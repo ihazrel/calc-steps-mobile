@@ -27,32 +27,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      drawer: Drawer(
-        backgroundColor: Color(0xFFECDEDE),
-        child: ListView(
-          padding: EdgeInsets.only(top: 25, left: 25),
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const Settings()));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.medical_information),
-              title: const Text('About'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const About()));
-              },
-            )
-          ],
-        ),
-      ),
+      drawer: mainPageDrawer(context),
       body: Column(
         children: [
           Center(
@@ -107,6 +82,35 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Drawer mainPageDrawer(BuildContext context) {
+    return Drawer(
+      backgroundColor: Color(0xFFECDEDE),
+      child: ListView(
+        padding: EdgeInsets.only(top: 25, left: 25),
+        children: <Widget>[
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const Settings()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.medical_information),
+            title: const Text('About'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => const About()));
+            },
+          )
         ],
       ),
     );

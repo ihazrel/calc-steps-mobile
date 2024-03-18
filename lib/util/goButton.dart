@@ -27,6 +27,7 @@ class GoButton extends StatelessWidget {
       ),
       onPressed: () {
         if (calculatorIndex != null && formulaIndex != null) {
+          Navigator.pushNamed(context, '/stepspage');
           print("calc" + calculatorIndex.toString());
           print("formula" + formulaIndex.toString());
         } else

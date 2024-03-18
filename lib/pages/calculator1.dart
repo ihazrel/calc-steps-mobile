@@ -52,11 +52,10 @@ class _Calculator1State extends State<Calculator1> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
-        //step 1
         StepsButton(
-          text: "1. Press SETUP button",
+          text: "1",
           onPressed: () => setState(() {
             onClick(0);
           }),
@@ -68,7 +67,7 @@ class _Calculator1State extends State<Calculator1> {
 
         //step 2
         StepsButton(
-          text: "2. Press (-) button to access Equation / Function",
+          text: "2",
           onPressed: () => setState(() {
             onClick(1);
           }),
@@ -80,7 +79,7 @@ class _Calculator1State extends State<Calculator1> {
 
         //step 3
         StepsButton(
-          text: "3. Press 2 for Polynomial",
+          text: "3",
           onPressed: () => setState(() {
             onClick(2);
           }),
@@ -92,7 +91,7 @@ class _Calculator1State extends State<Calculator1> {
 
         //step 4
         StepsButton(
-          text: "4.Press number of highest power of the equation",
+          text: "4",
           onPressed: () => setState(() {
             onClick(3);
           }),

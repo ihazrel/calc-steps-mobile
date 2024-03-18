@@ -31,7 +31,7 @@ class StepsButton extends StatelessWidget {
       buttonColor = Color(0xFFE8E8E8);
     }
 
-    // curved border first last
+    /*  // curved border first last
     BorderRadius round;
     if (isFirstLast == 1)
       round = BorderRadius.only(topLeft: Radius.circular(32));
@@ -44,9 +44,10 @@ class StepsButton extends StatelessWidget {
     if (isBesideClicked == 1)
       round = round.copyWith(topRight: Radius.circular(32));
     else if (isBesideClicked == 2)
-      round = round.copyWith(bottomRight: Radius.circular(32));
+      round = round.copyWith(bottomRight: Radius.circular(32)); */
 
-    return Expanded(
+    return SizedBox(
+      height: 96,
       child: MaterialButton(
         onPressed: onPressed,
         child: Padding(
@@ -61,7 +62,7 @@ class StepsButton extends StatelessWidget {
           ),
         ),
         color: buttonColor,
-        shape: RoundedRectangleBorder(borderRadius: round),
+        //shape: RoundedRectangleBorder(borderRadius: ),
         minWidth: 0,
         elevation: 0,
       ),
