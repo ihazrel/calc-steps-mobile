@@ -29,4 +29,7 @@ flutter:
 
   assets:
     # Add assets from the images directory to the application.
-    - assets/images/
+    - image/ex/factorize/
+    - image/ex/power/
+    - image/ms/factorize/
+    - image/ms/power/

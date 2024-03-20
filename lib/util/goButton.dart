@@ -16,11 +16,10 @@ class GoButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll<Color>(Color(0xFFD1A7A0)),
-        foregroundColor: MaterialStatePropertyAll<Color>(Colors.black),
-        minimumSize: MaterialStateProperty.all(Size(125, 41)),
-        elevation: MaterialStateProperty.all(0),
-      ),
+          backgroundColor: MaterialStatePropertyAll<Color>(Color(0xFFD1A7A0)),
+          foregroundColor: MaterialStatePropertyAll<Color>(Colors.black),
+          elevation: MaterialStateProperty.all(0),
+          minimumSize: MaterialStateProperty.all(Size(130, 40))),
       child: Text(
         'Go',
         style: TextStyle(fontSize: 25),
@@ -28,10 +27,14 @@ class GoButton extends StatelessWidget {
       onPressed: () {
         if (calculatorIndex != null && formulaIndex != null) {
           Navigator.pushNamed(context, '/stepspage');
-          print("calc" + calculatorIndex.toString());
-          print("formula" + formulaIndex.toString());
         } else
-          print("you must choose one");
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              contentPadding: EdgeInsets.all(5),
+              content: const Text('You must choose \ncalculator and formula'),
+            ),
+          );
       },
     );
   }

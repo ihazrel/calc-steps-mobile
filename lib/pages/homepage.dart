@@ -1,6 +1,6 @@
 import 'package:calc_steps_mobile/pages/About.dart';
 import 'package:calc_steps_mobile/pages/settings.dart';
-import 'package:calc_steps_mobile/util/dropdown.dart';
+import 'package:calc_steps_mobile/util/dropdownHomepage.dart';
 import 'package:calc_steps_mobile/util/goButton.dart';
 import 'package:calc_steps_mobile/util/tutorialButton.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     // dropdown menu
-                    Dropdown(
+                    DropdownHomepage(
                       onCalculatorIndexChanged: (int index) {
                         setState(() {
                           _calculatorIndex = index;

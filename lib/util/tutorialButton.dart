@@ -7,8 +7,7 @@ class TutorialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ButtonStyle(elevation: MaterialStateProperty.all(0)),
+    return MaterialButton(
       child: const Text(
         "How To Use?",
         style: TextStyle(
