@@ -14,28 +14,6 @@ class Calculator1 extends StatefulWidget {
 
 class _Calculator1State extends State<Calculator1> {
   var clickedList = [true, false, false, false];
-  List<int> besideList = [0, 1, 0, 0];
-
-  void updateBesideList(int i) {
-    // Update besideList based on the index i
-
-    // Clear the besideList
-    for (int j = 0; j < besideList.length; j++) {
-      besideList[j] = 0;
-    }
-
-    // Update besideList based on the clicked index i
-    besideList[i] = 0;
-
-    if (i == 3) {
-      besideList[i - 1] = 2;
-    } else if (i > 0) {
-      besideList[i - 1] = 2;
-      besideList[i + 1] = 1;
-    } else if (i == 0) {
-      besideList[i + 1] = 1;
-    }
-  }
 
   void onClick(int i) {
     // Reset clickedList
@@ -44,8 +22,6 @@ class _Calculator1State extends State<Calculator1> {
     }
 
     clickedList[i] = true;
-
-    updateBesideList(i);
 
     widget.onUpdateImageIndex(i);
   }
@@ -62,7 +38,6 @@ class _Calculator1State extends State<Calculator1> {
           onCurrent: true,
           isClicked: clickedList[0],
           isFirstLast: 1,
-          isBesideClicked: besideList[0],
         ),
 
         //step 2
@@ -74,7 +49,6 @@ class _Calculator1State extends State<Calculator1> {
           onCurrent: false,
           isClicked: clickedList[1],
           isFirstLast: 0,
-          isBesideClicked: besideList[1],
         ),
 
         //step 3
@@ -86,7 +60,6 @@ class _Calculator1State extends State<Calculator1> {
           onCurrent: false,
           isClicked: clickedList[2],
           isFirstLast: 0,
-          isBesideClicked: besideList[2],
         ),
 
         //step 4
@@ -98,7 +71,6 @@ class _Calculator1State extends State<Calculator1> {
           onCurrent: false,
           isClicked: clickedList[3],
           isFirstLast: 2,
-          isBesideClicked: besideList[3],
         ),
       ],
     );

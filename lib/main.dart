@@ -1,6 +1,8 @@
 import 'package:calc_steps_mobile/pages/calculator1.dart';
 import 'package:calc_steps_mobile/pages/homepage.dart';
 import 'package:calc_steps_mobile/pages/stepsPage.dart';
+import 'package:calc_steps_mobile/pages/testPages.dart';
+import 'package:calc_steps_mobile/util/stepsBackground.dart';
 import 'package:calc_steps_mobile/util/stepsButton.dart';
 import 'package:flutter/material.dart';
 
