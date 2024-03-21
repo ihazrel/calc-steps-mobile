@@ -22,6 +22,8 @@ class _StepsPageState extends State<StepsPage> {
   int _imageIndex = 0;
   int _pageIndex = 0;
 
+  String titleText = "";
+
   void handleButtonPressed(int index) {
     setState(() {
       _imageIndex = index;
@@ -52,12 +54,19 @@ class _StepsPageState extends State<StepsPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_formulaIndex == 0)
+      titleText = "Factorize";
+    else
+      titleText = "Power Root";
+
+    //
     return Scaffold(
       backgroundColor: Color(0xFFECDEDE),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        centerTitle: true,
         title: Text(
-          'Factorize',
+          titleText,
           style: TextStyle(fontSize: 40),
         ),
       ),
