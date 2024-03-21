@@ -5,7 +5,6 @@ import 'package:calc_steps_mobile/pages/calculator3.dart';
 import 'package:calc_steps_mobile/pages/calculator4.dart';
 import 'package:calc_steps_mobile/pages/settings.dart';
 import 'package:calc_steps_mobile/util/dropdownHomepage.dart';
-import 'package:calc_steps_mobile/util/goButton.dart';
 import 'package:calc_steps_mobile/util/stepsBackground.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
