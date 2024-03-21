@@ -36,11 +36,11 @@ class _Calculator4State extends State<Calculator4> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
         //step 1
         StepsButton(
-          text: "1. Press ( to put number in bracket",
+          text: "1",
           onPressed: () => setState(() {
             onClick(0);
           }),
@@ -51,7 +51,7 @@ class _Calculator4State extends State<Calculator4> {
 
         //step 2
         StepsButton(
-          text: "2. Press the number needed",
+          text: "2",
           onPressed: () => setState(() {
             onClick(1);
           }),
@@ -62,7 +62,7 @@ class _Calculator4State extends State<Calculator4> {
 
         //step 3
         StepsButton(
-          text: "3. Press the ^ button for power",
+          text: "3",
           onPressed: () => setState(() {
             onClick(2);
           }),
@@ -73,7 +73,7 @@ class _Calculator4State extends State<Calculator4> {
 
         //step 4
         StepsButton(
-          text: "4.Press the number for power needed",
+          text: "4",
           onPressed: () => setState(() {
             onClick(3);
           }),
@@ -84,7 +84,7 @@ class _Calculator4State extends State<Calculator4> {
 
         //step 5
         StepsButton(
-          text: "5. Press ) to close the bracket",
+          text: "5",
           onPressed: () => setState(() {
             onClick(4);
           }),

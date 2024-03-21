@@ -28,11 +28,11 @@ class _Calculator3State extends State<Calculator3> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
         //step 1
         StepsButton(
-          text: "1. Press SETUP button three times",
+          text: "1",
           onPressed: () => setState(() {
             onClick(0);
           }),
@@ -43,7 +43,7 @@ class _Calculator3State extends State<Calculator3> {
 
         //step 2
         StepsButton(
-          text: "2. Press right to access Degree option",
+          text: "2",
           onPressed: () => setState(() {
             onClick(1);
           }),
@@ -54,7 +54,7 @@ class _Calculator3State extends State<Calculator3> {
 
         //step 3
         StepsButton(
-          text: "3. Press 2",
+          text: "3",
           onPressed: () => setState(() {
             onClick(2);
           }),
@@ -65,7 +65,7 @@ class _Calculator3State extends State<Calculator3> {
 
         //step 4
         StepsButton(
-          text: "4. Enter value A",
+          text: "4",
           onPressed: () => setState(() {
             onClick(3);
           }),
@@ -76,7 +76,7 @@ class _Calculator3State extends State<Calculator3> {
 
         //step 5
         StepsButton(
-          text: "5. Enter value B",
+          text: "5",
           onPressed: () => setState(() {
             onClick(4);
           }),
@@ -87,7 +87,7 @@ class _Calculator3State extends State<Calculator3> {
 
         //step 6
         StepsButton(
-          text: "6. Enter value C",
+          text: "6",
           onPressed: () => setState(() {
             onClick(5);
           }),
@@ -98,7 +98,7 @@ class _Calculator3State extends State<Calculator3> {
 
         //step 7
         StepsButton(
-          text: "7. Press = button to see the first value",
+          text: "7",
           onPressed: () => setState(() {
             onClick(6);
           }),
@@ -109,7 +109,7 @@ class _Calculator3State extends State<Calculator3> {
 
         //step 8
         StepsButton(
-          text: "8. Press = button to see the second value",
+          text: "8",
           onPressed: () => setState(() {
             onClick(7);
           }),

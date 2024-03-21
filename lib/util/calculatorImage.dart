@@ -31,6 +31,7 @@ class CalculatorImage extends StatelessWidget {
     return Image.asset(
       imagePath,
       width: 250,
+      gaplessPlayback: true,
     );
   }
 }
