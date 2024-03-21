@@ -6,7 +6,7 @@ class CalculatorImage extends StatelessWidget {
   final int calculatorIndex;
 
   final List<String> calcList = ['ex', 'ms'];
-  final List<String> formulaList = ['factorize', 'power'];
+  final List<String> formulaList = ['factorize', 'root', 'exponent'];
 
   CalculatorImage({
     required this.imageIndex,
@@ -23,10 +23,10 @@ class CalculatorImage extends StatelessWidget {
   }
 
   Widget loadImageAsset() {
-    String imagePath = 'image/';
+    String imagePath = 'image2/';
     imagePath += '${calcList.elementAt(calculatorIndex)}/';
     imagePath += '${formulaList.elementAt(formulaIndex)}/';
-    imagePath += '${imageIndex + 1}.webp';
+    imagePath += '${imageIndex + 1}.png';
 
     return Image.asset(
       imagePath,

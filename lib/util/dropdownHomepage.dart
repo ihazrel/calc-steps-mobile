@@ -18,7 +18,11 @@ class _DropdownHomepageState extends State<DropdownHomepage> {
   final List<String> calculatorDropdownItems = ['FX570EX', 'FX570MS'];
 
   var formulaDropdownValue = null;
-  final List<String> formulaDropdownItems = ['Factorization', 'Power Root'];
+  final List<String> formulaDropdownItems = [
+    'Factorization',
+    'Power Root',
+    'Exponent'
+  ];
 
   int formulaIndex = 0;
   int calculatorIndex = 0;

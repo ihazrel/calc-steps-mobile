@@ -1,8 +1,10 @@
 import 'package:calc_steps_mobile/pages/about.dart';
-import 'package:calc_steps_mobile/pages/calculator1.dart';
-import 'package:calc_steps_mobile/pages/calculator2.dart';
-import 'package:calc_steps_mobile/pages/calculator3.dart';
-import 'package:calc_steps_mobile/pages/calculator4.dart';
+import 'package:calc_steps_mobile/pages/calcEx1.dart';
+import 'package:calc_steps_mobile/pages/calcEx2.dart';
+import 'package:calc_steps_mobile/pages/calcEx3.dart';
+import 'package:calc_steps_mobile/pages/calcMs1.dart';
+import 'package:calc_steps_mobile/pages/calcMs2.dart';
+import 'package:calc_steps_mobile/pages/calcMs3.dart';
 import 'package:calc_steps_mobile/pages/settings.dart';
 import 'package:calc_steps_mobile/util/dropdownHomepage.dart';
 import 'package:calc_steps_mobile/util/stepsBackground.dart';
@@ -32,33 +34,46 @@ class _StepsPageState extends State<StepsPage> {
 
   late List<Widget> _pages = [
     // Ex Factorize
-    Calculator1(
+    CalcEx1(
       onUpdateImageIndex: handleButtonPressed,
     ),
 
-    // Ex Power
-    Calculator2(
+    // Ex Root
+    CalcEx2(
+      onUpdateImageIndex: handleButtonPressed,
+    ),
+
+    // Ex Exponent
+    CalcEx3(
       onUpdateImageIndex: handleButtonPressed,
     ),
 
     // MS Factorize
-    Calculator3(
+    CalcMs1(
       onUpdateImageIndex: handleButtonPressed,
     ),
 
-    // MS Power
-    Calculator4(
+    // MS Root
+    CalcMs2(
+      onUpdateImageIndex: handleButtonPressed,
+    ),
+
+    // MS Exponent
+    CalcMs3(
       onUpdateImageIndex: handleButtonPressed,
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    if (_formulaIndex == 0)
-      titleText = "Factorize";
-    else
-      titleText = "Power Root";
-
+    switch (_formulaIndex) {
+      case 0:
+        titleText = "FACTORIZE";
+      case 1:
+        titleText = "POWER ROOT";
+      case 2:
+        titleText = "EXPONENT";
+    }
     //
     return Scaffold(
       backgroundColor: Color(0xFFECDEDE),
@@ -76,6 +91,17 @@ class _StepsPageState extends State<StepsPage> {
         child: Column(
           children: [
             SizedBox(height: 40, child: _pages[_pageIndex]),
+
+            // text
+            Container(
+              height: 30,
+              width: double.infinity,
+              color: Color(0xFFD1A7A0),
+              alignment: Alignment.center,
+              child: Text('Lorum Ipsum'),
+            ),
+
+            // picture
             Expanded(
               child: StepsBackground(
                 imageIndex: _imageIndex,
@@ -97,35 +123,59 @@ class _StepsPageState extends State<StepsPage> {
         children: <Widget>[
           DropdownHomepage(
             onCalculatorIndexChanged: (int index) {
-              setState(() {
-                _imageIndex = 0;
-                _calculatorIndex = index;
-                _formulaIndex = _formulaIndex;
+              setState(
+                () {
+                  _imageIndex = 0;
+                  _calculatorIndex = index;
+                  _formulaIndex = _formulaIndex;
 
-                if (_formulaIndex == 0 && _calculatorIndex == 0) {
-                  _pageIndex = 0;
-                } else if (_formulaIndex == 1 && _calculatorIndex == 0) {
-                  _pageIndex = 1;
-                } else if (_formulaIndex == 0 && _calculatorIndex == 1) {
-                  _pageIndex = 2;
-                } else if (_formulaIndex == 1 && _calculatorIndex == 1) {
-                  _pageIndex = 3;
-                }
-              });
+                  switch (_calculatorIndex) {
+                    case 0:
+                      switch (_formulaIndex) {
+                        case 0:
+                          _pageIndex = 0;
+                        case 1:
+                          _pageIndex = 1;
+                        case 2:
+                          _pageIndex = 2;
+                      }
+                    case 1:
+                      switch (_formulaIndex) {
+                        case 0:
+                          _pageIndex = 3;
+                        case 1:
+                          _pageIndex = 4;
+                        case 2:
+                          _pageIndex = 5;
+                      }
+                  }
+                },
+              );
             },
             onFormulaIndexChanged: (int index) {
               setState(() {
                 _imageIndex = 0;
                 _formulaIndex = index;
 
-                if (_formulaIndex == 0 && _calculatorIndex == 0) {
-                  _pageIndex = 0;
-                } else if (_formulaIndex == 1 && _calculatorIndex == 0) {
-                  _pageIndex = 1;
-                } else if (_formulaIndex == 0 && _calculatorIndex == 1) {
-                  _pageIndex = 2;
-                } else if (_formulaIndex == 1 && _calculatorIndex == 1) {
-                  _pageIndex = 3;
+                switch (_calculatorIndex) {
+                  case 0:
+                    switch (_formulaIndex) {
+                      case 0:
+                        _pageIndex = 0;
+                      case 1:
+                        _pageIndex = 1;
+                      case 2:
+                        _pageIndex = 2;
+                    }
+                  case 1:
+                    switch (_formulaIndex) {
+                      case 0:
+                        _pageIndex = 3;
+                      case 1:
+                        _pageIndex = 4;
+                      case 2:
+                        _pageIndex = 5;
+                    }
                 }
               });
             },

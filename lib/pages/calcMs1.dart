@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 // calculator FX570MS
 
-class Calculator4 extends StatefulWidget {
+class CalcMs1 extends StatefulWidget {
   final Function(int) onUpdateImageIndex;
 
-  Calculator4({Key? key, required this.onUpdateImageIndex}) : super(key: key);
+  CalcMs1({Key? key, required this.onUpdateImageIndex}) : super(key: key);
 
   @override
-  State<Calculator4> createState() => _Calculator4State();
+  State<CalcMs1> createState() => _CalcMs1State();
 }
 
-class _Calculator4State extends State<Calculator4> {
-  var clickedList = [true, false, false, false, false];
+class _CalcMs1State extends State<CalcMs1> {
+  var clickedList = [true, false, false, false, false, false, false];
 
   void onClick(int i) {
     // Reset clickedList
@@ -90,7 +90,29 @@ class _Calculator4State extends State<Calculator4> {
           }),
           onCurrent: false,
           isClicked: clickedList[4],
-          isFirstLast: 2,
+          isFirstLast: 0,
+        ),
+
+        //step 6
+        StepsButton(
+          text: "6",
+          onPressed: () => setState(() {
+            onClick(5);
+          }),
+          onCurrent: false,
+          isClicked: clickedList[5],
+          isFirstLast: 0,
+        ),
+
+        //step 7
+        StepsButton(
+          text: "7",
+          onPressed: () => setState(() {
+            onClick(6);
+          }),
+          onCurrent: false,
+          isClicked: clickedList[6],
+          isFirstLast: 0,
         ),
       ],
     );

@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 // calculator FX570Ex
 
-class Calculator3 extends StatefulWidget {
+class CalcEx3 extends StatefulWidget {
   final Function(int) onUpdateImageIndex;
 
-  Calculator3({Key? key, required this.onUpdateImageIndex}) : super(key: key);
+  CalcEx3({Key? key, required this.onUpdateImageIndex}) : super(key: key);
 
   @override
-  State<Calculator3> createState() => _Calculator3State();
+  State<CalcEx3> createState() => _CalcEx3State();
 }
 
-class _Calculator3State extends State<Calculator3> {
-  var clickedList = [true, false, false, false, false, false, false, false];
+class _CalcEx3State extends State<CalcEx3> {
+  var clickedList = [true, false, false, false];
 
   void onClick(int i) {
     // Reset clickedList
@@ -71,50 +71,6 @@ class _Calculator3State extends State<Calculator3> {
           }),
           onCurrent: false,
           isClicked: clickedList[3],
-          isFirstLast: 0,
-        ),
-
-        //step 5
-        StepsButton(
-          text: "5",
-          onPressed: () => setState(() {
-            onClick(4);
-          }),
-          onCurrent: false,
-          isClicked: clickedList[4],
-          isFirstLast: 0,
-        ),
-
-        //step 6
-        StepsButton(
-          text: "6",
-          onPressed: () => setState(() {
-            onClick(5);
-          }),
-          onCurrent: false,
-          isClicked: clickedList[5],
-          isFirstLast: 0,
-        ),
-
-        //step 7
-        StepsButton(
-          text: "7",
-          onPressed: () => setState(() {
-            onClick(6);
-          }),
-          onCurrent: false,
-          isClicked: clickedList[6],
-          isFirstLast: 0,
-        ),
-
-        //step 8
-        StepsButton(
-          text: "8",
-          onPressed: () => setState(() {
-            onClick(7);
-          }),
-          onCurrent: false,
-          isClicked: clickedList[7],
           isFirstLast: 2,
         ),
       ],

@@ -1,19 +1,19 @@
 import 'package:calc_steps_mobile/util/stepsButton.dart';
 import 'package:flutter/material.dart';
 
-// calculator FX570Ex
+// calculator FX570MS
 
-class Calculator1 extends StatefulWidget {
+class CalcEx2 extends StatefulWidget {
   final Function(int) onUpdateImageIndex;
 
-  Calculator1({Key? key, required this.onUpdateImageIndex}) : super(key: key);
+  CalcEx2({Key? key, required this.onUpdateImageIndex}) : super(key: key);
 
   @override
-  State<Calculator1> createState() => _Calculator1State();
+  State<CalcEx2> createState() => _CalcEx2State();
 }
 
-class _Calculator1State extends State<Calculator1> {
-  var clickedList = [true, false, false, false];
+class _CalcEx2State extends State<CalcEx2> {
+  var clickedList = [true, false, false, false, false, false];
 
   void onClick(int i) {
     // Reset clickedList
@@ -21,15 +21,24 @@ class _Calculator1State extends State<Calculator1> {
       clickedList[j] = false;
     }
 
+    // Set the clicked button to true
     clickedList[i] = true;
 
+    // update imageIndex
     widget.onUpdateImageIndex(i);
+
+    // Print out the contents of the besideList for debugging
+    /* for (int j = 0; j < besideList.length; j++) {
+      print("$i$j" + ", " + besideList[j].toString());
+    }
+    print("=============="); */
   }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        //step 1
         StepsButton(
           text: "1",
           onPressed: () => setState(() {
@@ -70,6 +79,28 @@ class _Calculator1State extends State<Calculator1> {
           }),
           onCurrent: false,
           isClicked: clickedList[3],
+          isFirstLast: 0,
+        ),
+
+        //step 5
+        StepsButton(
+          text: "5",
+          onPressed: () => setState(() {
+            onClick(4);
+          }),
+          onCurrent: false,
+          isClicked: clickedList[4],
+          isFirstLast: 0,
+        ),
+
+        //step 6
+        StepsButton(
+          text: "6",
+          onPressed: () => setState(() {
+            onClick(5);
+          }),
+          onCurrent: false,
+          isClicked: clickedList[5],
           isFirstLast: 2,
         ),
       ],

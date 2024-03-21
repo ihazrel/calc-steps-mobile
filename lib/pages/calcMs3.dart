@@ -1,19 +1,19 @@
 import 'package:calc_steps_mobile/util/stepsButton.dart';
 import 'package:flutter/material.dart';
 
-// calculator FX570MS
+// calculator FX570Ex
 
-class Calculator2 extends StatefulWidget {
+class CalcMs3 extends StatefulWidget {
   final Function(int) onUpdateImageIndex;
 
-  Calculator2({Key? key, required this.onUpdateImageIndex}) : super(key: key);
+  CalcMs3({Key? key, required this.onUpdateImageIndex}) : super(key: key);
 
   @override
-  State<Calculator2> createState() => _Calculator2State();
+  State<CalcMs3> createState() => _CalcMs3State();
 }
 
-class _Calculator2State extends State<Calculator2> {
-  var clickedList = [true, false, false];
+class _CalcMs3State extends State<CalcMs3> {
+  var clickedList = [true, false, false, false];
 
   void onClick(int i) {
     // Reset clickedList
@@ -21,24 +21,15 @@ class _Calculator2State extends State<Calculator2> {
       clickedList[j] = false;
     }
 
-    // Set the clicked button to true
     clickedList[i] = true;
 
-    // update imageIndex
     widget.onUpdateImageIndex(i);
-
-    // Print out the contents of the besideList for debugging
-    /* for (int j = 0; j < besideList.length; j++) {
-      print("$i$j" + ", " + besideList[j].toString());
-    }
-    print("=============="); */
   }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        //step 1
         StepsButton(
           text: "1",
           onPressed: () => setState(() {
@@ -68,6 +59,17 @@ class _Calculator2State extends State<Calculator2> {
           }),
           onCurrent: false,
           isClicked: clickedList[2],
+          isFirstLast: 0,
+        ),
+
+        //step 4
+        StepsButton(
+          text: "4",
+          onPressed: () => setState(() {
+            onClick(3);
+          }),
+          onCurrent: false,
+          isClicked: clickedList[3],
           isFirstLast: 2,
         ),
       ],
