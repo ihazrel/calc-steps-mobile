@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Color(0xFFECDEDE),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -30,11 +31,14 @@ class _HomePageState extends State<HomePage> {
       drawer: mainPageDrawer(context),
       body: Column(
         children: [
+          Align(
+              alignment: Alignment.topRight,
+              child: Image.asset('image2/svg/1.png')),
           Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 170),
-              child: SizedBox(
-                width: 300,
+            child: SizedBox(
+              width: 300,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 85),
                 child: Column(
                   children: [
                     // text

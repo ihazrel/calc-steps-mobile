@@ -12,7 +12,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StepsPage extends StatefulWidget {
-  const StepsPage({Key? key}) : super(key: key);
+  final int initialCalculatorIndex;
+  final int initialFormulaIndex;
+  final int initialPageIndex;
+
+  const StepsPage(
+      {Key? key,
+      required this.initialPageIndex,
+      required this.initialFormulaIndex,
+      required this.initialCalculatorIndex})
+      : super(key: key);
 
   @override
   State<StepsPage> createState() => _StepsPageState();
@@ -25,6 +34,15 @@ class _StepsPageState extends State<StepsPage> {
   int _pageIndex = 0;
 
   String titleText = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _pageIndex = widget.initialPageIndex;
+    _formulaIndex = widget.initialFormulaIndex;
+    _calculatorIndex = widget.initialCalculatorIndex;
+    print(_pageIndex);
+  }
 
   void handleButtonPressed(int index) {
     setState(() {
@@ -62,6 +80,10 @@ class _StepsPageState extends State<StepsPage> {
     CalcMs3(
       onUpdateImageIndex: handleButtonPressed,
     ),
+  ];
+
+  List<String> instructionsList = [
+    '',
   ];
 
   @override

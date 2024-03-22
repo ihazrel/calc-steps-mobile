@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -10,7 +12,12 @@ class Settings extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      body: Text("Settings"),
+      body: Image.asset(
+        'image2/svg/2.png',
+        width: double.infinity,
+        fit: BoxFit.fill,
+        gaplessPlayback: true,
+      ),
     );
   }
 }

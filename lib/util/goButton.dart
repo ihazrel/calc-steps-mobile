@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:calc_steps_mobile/pages/stepsPage.dart';
 import 'package:flutter/material.dart';
 
 class GoButton extends StatelessWidget {
@@ -14,6 +15,29 @@ class GoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int _intialPageIndex = 0;
+
+    switch (calculatorIndex) {
+      case 0:
+        switch (formulaIndex) {
+          case 0:
+            _intialPageIndex = 0;
+          case 1:
+            _intialPageIndex = 1;
+          case 2:
+            _intialPageIndex = 2;
+        }
+      case 1:
+        switch (formulaIndex) {
+          case 0:
+            _intialPageIndex = 3;
+          case 1:
+            _intialPageIndex = 4;
+          case 2:
+            _intialPageIndex = 5;
+        }
+    }
+
     return ElevatedButton(
       style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll<Color>(Color(0xFFD1A7A0)),
@@ -26,7 +50,14 @@ class GoButton extends StatelessWidget {
       ),
       onPressed: () {
         if (calculatorIndex != null && formulaIndex != null) {
-          Navigator.pushNamed(context, '/stepspage');
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => StepsPage(
+                        initialPageIndex: _intialPageIndex,
+                        initialCalculatorIndex: calculatorIndex,
+                        initialFormulaIndex: formulaIndex,
+                      )));
         } else
           showDialog(
             context: context,

@@ -30,6 +30,7 @@ flutter:
 
   assets:
     # Add assets from the images directory to the application.
+    - image2/svg/
     - image2/ex/factorize/
     - image2/ex/exponent/
     - image2/ex/root/

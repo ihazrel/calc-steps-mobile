@@ -1,4 +1,5 @@
 import 'package:calc_steps_mobile/pages/homepage.dart';
+import 'package:calc_steps_mobile/pages/settings.dart';
 import 'package:calc_steps_mobile/pages/stepsPage.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,6 @@ class MainApp extends StatelessWidget {
       home: HomePage(),
       routes: {
         '/homepage': (context) => const HomePage(),
-        '/stepspage': (context) => const StepsPage(),
       },
     );
   }

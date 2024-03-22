@@ -10,7 +10,12 @@ class About extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      body: Text("About"),
+      body: Image.asset(
+        'image2/svg/2.png',
+        width: double.infinity,
+        fit: BoxFit.fill,
+        gaplessPlayback: true,
+      ),
     );
   }
 }
