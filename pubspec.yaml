@@ -37,3 +37,9 @@ flutter:
     - image2/ms/factorize/
     - image2/ms/exponent/
     - image2/ms/root/
+
+fonts:
+  - family: Lato
+    fonts:
+    - assets: fonts/Lato-Bold.ttf
+    - assets: fonts/Lato-Regular.ttf

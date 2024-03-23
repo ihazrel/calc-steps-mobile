@@ -70,28 +70,6 @@ class _CalcMs2State extends State<CalcMs2> {
           }),
           onCurrent: false,
           isClicked: clickedList[3],
-          isFirstLast: 0,
-        ),
-
-        //step 5
-        StepsButton(
-          text: "5",
-          onPressed: () => setState(() {
-            onClick(4);
-          }),
-          onCurrent: false,
-          isClicked: clickedList[4],
-          isFirstLast: 0,
-        ),
-
-        //step 6
-        StepsButton(
-          text: "6",
-          onPressed: () => setState(() {
-            onClick(5);
-          }),
-          onCurrent: false,
-          isClicked: clickedList[5],
           isFirstLast: 2,
         ),
       ],

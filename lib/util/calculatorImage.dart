@@ -16,10 +16,7 @@ class CalculatorImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: loadImageAsset(),
-    );
+    return loadImageAsset();
   }
 
   Widget loadImageAsset() {
@@ -30,7 +27,7 @@ class CalculatorImage extends StatelessWidget {
 
     return Image.asset(
       imagePath,
-      width: 250,
+      width: double.infinity,
       gaplessPlayback: true,
     );
   }

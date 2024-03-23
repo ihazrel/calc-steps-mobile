@@ -17,6 +17,8 @@ class StepsBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
+      padding: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: Color(0xFFD1A7A0),
         borderRadius: BorderRadius.only(
@@ -24,12 +26,34 @@ class StepsBackground extends StatelessWidget {
           bottomRight: Radius.circular(32),
         ),
       ),
-      child: Center(
-        child: CalculatorImage(
-          imageIndex: imageIndex,
-          calculatorIndex: calculatorIndex,
-          formulaIndex: formulaIndex,
-        ),
+      child: Stack(
+        children: [
+          CalculatorImage(
+            imageIndex: imageIndex,
+            calculatorIndex: calculatorIndex,
+            formulaIndex: formulaIndex,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: MaterialButton(
+                  onPressed: () {},
+                  color: Colors.transparent,
+                  elevation: 0,
+                  height: double.infinity,
+                ),
+              ),
+              Expanded(
+                child: MaterialButton(
+                  onPressed: () {},
+                  color: Colors.transparent,
+                  elevation: 0,
+                  height: double.infinity,
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

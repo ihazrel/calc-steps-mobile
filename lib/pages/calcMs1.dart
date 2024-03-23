@@ -101,18 +101,7 @@ class _CalcMs1State extends State<CalcMs1> {
           }),
           onCurrent: false,
           isClicked: clickedList[5],
-          isFirstLast: 0,
-        ),
-
-        //step 7
-        StepsButton(
-          text: "7",
-          onPressed: () => setState(() {
-            onClick(6);
-          }),
-          onCurrent: false,
-          isClicked: clickedList[6],
-          isFirstLast: 0,
+          isFirstLast: 2,
         ),
       ],
     );

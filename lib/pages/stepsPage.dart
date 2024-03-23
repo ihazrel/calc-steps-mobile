@@ -34,6 +34,7 @@ class _StepsPageState extends State<StepsPage> {
   int _pageIndex = 0;
 
   String titleText = "";
+  String instructionsText = "";
 
   @override
   void initState() {
@@ -82,8 +83,44 @@ class _StepsPageState extends State<StepsPage> {
     ),
   ];
 
-  List<String> instructionsList = [
-    '',
+  List<String> instructionsListEx = [
+    //factorize
+    'Press SETUP button',
+    "Press '(-)' button for Equation",
+    "Press '2' for polynomial",
+    'Press the highest power of equation',
+    'Enter value for a, b, and c',
+    "Press '=' button for 1st and 2nd value",
+    //root
+    "Enter a number for root value",
+    "Press SHIFT and 'ϰ' button",
+    "Enter the number you desired",
+    "Press '=' button for the value",
+    //power
+    "Enter a number for base ",
+    "Press 'ϰ' button",
+    "Enter the number for power",
+    "Press '=' button for the value",
+  ];
+
+  List<String> instructionsListMs = [
+    //factorize
+    'Press MODE button 3 times',
+    "Press '1' for EQN",
+    "Press RIGHT button on navigation pad",
+    "Press the highest power of equation",
+    "Enter value for a, b, and c",
+    "Press '=' button for 1st and 2nd value",
+    //root
+    "Enter a number for root value",
+    "Press SHIFT and '∧' button",
+    "Enter the number you desired",
+    "Press '=' button for the value",
+    //power
+    "Enter a number for base ",
+    "Press '∧' button",
+    "Enter the number for power",
+    "Press '=' button for the value",
   ];
 
   @override
@@ -96,6 +133,26 @@ class _StepsPageState extends State<StepsPage> {
       case 2:
         titleText = "EXPONENT";
     }
+    switch (_calculatorIndex) {
+      case 0:
+        switch (_formulaIndex) {
+          case 0:
+            instructionsText = instructionsListEx[_imageIndex];
+          case 1:
+            instructionsText = instructionsListEx[_imageIndex + 6];
+          case 2:
+            instructionsText = instructionsListEx[_imageIndex + 10];
+        }
+      case 1:
+        switch (_formulaIndex) {
+          case 0:
+            instructionsText = instructionsListMs[_imageIndex];
+          case 1:
+            instructionsText = instructionsListMs[_imageIndex + 6];
+          case 2:
+            instructionsText = instructionsListMs[_imageIndex + 10];
+        }
+    }
     //
     return Scaffold(
       backgroundColor: Color(0xFFECDEDE),
@@ -104,7 +161,7 @@ class _StepsPageState extends State<StepsPage> {
         centerTitle: true,
         title: Text(
           titleText,
-          style: TextStyle(fontSize: 40),
+          style: TextStyle(fontSize: 32, fontFamily: 'Lato'),
         ),
       ),
       drawer: stepsPageDrawer(),
@@ -116,11 +173,17 @@ class _StepsPageState extends State<StepsPage> {
 
             // text
             Container(
-              height: 30,
+              padding: EdgeInsets.only(top: 15, bottom: 15, right: 5, left: 5),
+              alignment: Alignment.center,
               width: double.infinity,
               color: Color(0xFFD1A7A0),
-              alignment: Alignment.center,
-              child: Text('Lorum Ipsum'),
+              child: Text(
+                instructionsText,
+                style: TextStyle(
+                    fontFamily: 'Lato',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
+              ),
             ),
 
             // picture

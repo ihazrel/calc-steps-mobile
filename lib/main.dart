@@ -14,7 +14,11 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: StepsPage(
+        initialCalculatorIndex: 0,
+        initialFormulaIndex: 0,
+        initialPageIndex: 0,
+      ),
       routes: {
         '/homepage': (context) => const HomePage(),
       },
