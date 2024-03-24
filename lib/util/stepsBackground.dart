@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class StepsBackground extends StatelessWidget {
+  final VoidCallback onNextPressed;
+  final VoidCallback onPreviousPressed;
+
   final int calculatorIndex;
   final int formulaIndex;
   final int imageIndex;
@@ -12,6 +15,8 @@ class StepsBackground extends StatelessWidget {
     required this.calculatorIndex,
     required this.formulaIndex,
     required this.imageIndex,
+    required this.onNextPressed,
+    required this.onPreviousPressed,
   });
 
   @override
@@ -37,7 +42,7 @@ class StepsBackground extends StatelessWidget {
             children: [
               Expanded(
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: onPreviousPressed,
                   color: Colors.transparent,
                   elevation: 0,
                   height: double.infinity,
@@ -45,7 +50,7 @@ class StepsBackground extends StatelessWidget {
               ),
               Expanded(
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: onNextPressed,
                   color: Colors.transparent,
                   elevation: 0,
                   height: double.infinity,

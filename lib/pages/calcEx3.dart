@@ -36,7 +36,6 @@ class _CalcEx3State extends State<CalcEx3> {
           onPressed: () => setState(() {
             onClick(0);
           }),
-          onCurrent: true,
           isClicked: clickedList[0],
           isFirstLast: 1,
         ),
@@ -47,7 +46,6 @@ class _CalcEx3State extends State<CalcEx3> {
           onPressed: () => setState(() {
             onClick(1);
           }),
-          onCurrent: false,
           isClicked: clickedList[1],
           isFirstLast: 0,
         ),
@@ -58,7 +56,6 @@ class _CalcEx3State extends State<CalcEx3> {
           onPressed: () => setState(() {
             onClick(2);
           }),
-          onCurrent: false,
           isClicked: clickedList[2],
           isFirstLast: 0,
         ),
@@ -69,7 +66,6 @@ class _CalcEx3State extends State<CalcEx3> {
           onPressed: () => setState(() {
             onClick(3);
           }),
-          onCurrent: false,
           isClicked: clickedList[3],
           isFirstLast: 2,
         ),

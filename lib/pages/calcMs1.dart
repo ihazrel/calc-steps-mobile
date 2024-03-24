@@ -44,7 +44,6 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(0);
           }),
-          onCurrent: true,
           isClicked: clickedList[0],
           isFirstLast: 1,
         ),
@@ -55,7 +54,6 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(1);
           }),
-          onCurrent: false,
           isClicked: clickedList[1],
           isFirstLast: 0,
         ),
@@ -66,7 +64,6 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(2);
           }),
-          onCurrent: false,
           isClicked: clickedList[2],
           isFirstLast: 0,
         ),
@@ -77,7 +74,6 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(3);
           }),
-          onCurrent: false,
           isClicked: clickedList[3],
           isFirstLast: 0,
         ),
@@ -88,7 +84,6 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(4);
           }),
-          onCurrent: false,
           isClicked: clickedList[4],
           isFirstLast: 0,
         ),
@@ -99,7 +94,6 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(5);
           }),
-          onCurrent: false,
           isClicked: clickedList[5],
           isFirstLast: 2,
         ),

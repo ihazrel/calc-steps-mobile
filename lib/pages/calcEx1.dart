@@ -5,25 +5,38 @@ import 'package:flutter/material.dart';
 
 class CalcEx1 extends StatefulWidget {
   final Function(int) onUpdateImageIndex;
+  final VoidCallback rebuildCallBack;
 
-  CalcEx1({Key? key, required this.onUpdateImageIndex}) : super(key: key);
+  final int currentStep;
+
+  CalcEx1({
+    required this.onUpdateImageIndex,
+    required this.currentStep,
+    required this.rebuildCallBack,
+  });
 
   @override
   State<CalcEx1> createState() => _CalcEx1State();
 }
 
 class _CalcEx1State extends State<CalcEx1> {
+  int currentStep = 0;
+
   var clickedList = [true, false, false, false, false, false];
 
   void onClick(int i) {
-    // Reset clickedList
-    for (int j = 0; j < clickedList.length; j++) {
-      clickedList[j] = false;
-    }
-
-    clickedList[i] = true;
+    setState(() {
+      currentStep = i;
+    });
 
     widget.onUpdateImageIndex(i);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    currentStep = widget.currentStep;
+    print(currentStep);
   }
 
   @override
@@ -35,8 +48,7 @@ class _CalcEx1State extends State<CalcEx1> {
           onPressed: () => setState(() {
             onClick(0);
           }),
-          onCurrent: true,
-          isClicked: clickedList[0],
+          isClicked: currentStep == 0,
           isFirstLast: 1,
         ),
 
@@ -46,8 +58,7 @@ class _CalcEx1State extends State<CalcEx1> {
           onPressed: () => setState(() {
             onClick(1);
           }),
-          onCurrent: false,
-          isClicked: clickedList[1],
+          isClicked: currentStep == 1,
           isFirstLast: 0,
         ),
 
@@ -57,8 +68,7 @@ class _CalcEx1State extends State<CalcEx1> {
           onPressed: () => setState(() {
             onClick(2);
           }),
-          onCurrent: false,
-          isClicked: clickedList[2],
+          isClicked: currentStep == 2,
           isFirstLast: 0,
         ),
 
@@ -68,8 +78,7 @@ class _CalcEx1State extends State<CalcEx1> {
           onPressed: () => setState(() {
             onClick(3);
           }),
-          onCurrent: false,
-          isClicked: clickedList[3],
+          isClicked: currentStep == 3,
           isFirstLast: 0,
         ),
 
@@ -79,8 +88,7 @@ class _CalcEx1State extends State<CalcEx1> {
           onPressed: () => setState(() {
             onClick(4);
           }),
-          onCurrent: false,
-          isClicked: clickedList[4],
+          isClicked: currentStep == 4,
           isFirstLast: 0,
         ),
 
@@ -90,8 +98,7 @@ class _CalcEx1State extends State<CalcEx1> {
           onPressed: () => setState(() {
             onClick(5);
           }),
-          onCurrent: false,
-          isClicked: clickedList[5],
+          isClicked: currentStep == 5,
           isFirstLast: 2,
         ),
       ],

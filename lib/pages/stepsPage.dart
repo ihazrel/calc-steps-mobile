@@ -8,7 +8,6 @@ import 'package:calc_steps_mobile/pages/calcMs3.dart';
 import 'package:calc_steps_mobile/pages/settings.dart';
 import 'package:calc_steps_mobile/util/dropdownHomepage.dart';
 import 'package:calc_steps_mobile/util/stepsBackground.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StepsPage extends StatefulWidget {
@@ -32,9 +31,40 @@ class _StepsPageState extends State<StepsPage> {
   int _formulaIndex = 0;
   int _imageIndex = 0;
   int _pageIndex = 0;
+  int currentStep = 0;
 
   String titleText = "";
   String instructionsText = "";
+
+  void rebuildCalcEx1() {
+    setState(() {});
+  }
+
+  void updateStep(int step) {
+    setState(() {
+      currentStep = step;
+    });
+  }
+
+  void nextStep() {
+    setState(() {
+      if (currentStep < 5) {
+        currentStep++;
+        rebuildCalcEx1();
+      }
+    });
+    print(currentStep);
+  }
+
+  void previousStep() {
+    setState(() {
+      if (currentStep > 0) {
+        currentStep--;
+        rebuildCalcEx1();
+      }
+    });
+    print(currentStep);
+  }
 
   @override
   void initState() {
@@ -45,41 +75,37 @@ class _StepsPageState extends State<StepsPage> {
     print(_pageIndex);
   }
 
-  void handleButtonPressed(int index) {
-    setState(() {
-      _imageIndex = index;
-    });
-  }
-
   late List<Widget> _pages = [
     // Ex Factorize
     CalcEx1(
-      onUpdateImageIndex: handleButtonPressed,
+      onUpdateImageIndex: updateStep,
+      currentStep: currentStep,
+      rebuildCallBack: rebuildCalcEx1,
     ),
 
     // Ex Root
     CalcEx2(
-      onUpdateImageIndex: handleButtonPressed,
+      onUpdateImageIndex: updateStep,
     ),
 
     // Ex Exponent
     CalcEx3(
-      onUpdateImageIndex: handleButtonPressed,
+      onUpdateImageIndex: updateStep,
     ),
 
     // MS Factorize
     CalcMs1(
-      onUpdateImageIndex: handleButtonPressed,
+      onUpdateImageIndex: updateStep,
     ),
 
     // MS Root
     CalcMs2(
-      onUpdateImageIndex: handleButtonPressed,
+      onUpdateImageIndex: updateStep,
     ),
 
     // MS Exponent
     CalcMs3(
-      onUpdateImageIndex: handleButtonPressed,
+      onUpdateImageIndex: updateStep,
     ),
   ];
 
@@ -137,20 +163,20 @@ class _StepsPageState extends State<StepsPage> {
       case 0:
         switch (_formulaIndex) {
           case 0:
-            instructionsText = instructionsListEx[_imageIndex];
+            instructionsText = instructionsListEx[currentStep];
           case 1:
-            instructionsText = instructionsListEx[_imageIndex + 6];
+            instructionsText = instructionsListEx[currentStep + 6];
           case 2:
-            instructionsText = instructionsListEx[_imageIndex + 10];
+            instructionsText = instructionsListEx[currentStep + 10];
         }
       case 1:
         switch (_formulaIndex) {
           case 0:
-            instructionsText = instructionsListMs[_imageIndex];
+            instructionsText = instructionsListMs[currentStep];
           case 1:
-            instructionsText = instructionsListMs[_imageIndex + 6];
+            instructionsText = instructionsListMs[currentStep + 6];
           case 2:
-            instructionsText = instructionsListMs[_imageIndex + 10];
+            instructionsText = instructionsListMs[currentStep + 10];
         }
     }
     //
@@ -189,9 +215,11 @@ class _StepsPageState extends State<StepsPage> {
             // picture
             Expanded(
               child: StepsBackground(
-                imageIndex: _imageIndex,
+                imageIndex: currentStep,
                 calculatorIndex: _calculatorIndex,
                 formulaIndex: _formulaIndex,
+                onNextPressed: nextStep,
+                onPreviousPressed: previousStep,
               ),
             ),
           ],
