@@ -29,7 +29,6 @@ class StepsPage extends StatefulWidget {
 class _StepsPageState extends State<StepsPage> {
   int _calculatorIndex = 0;
   int _formulaIndex = 0;
-  int _imageIndex = 0;
   int _pageIndex = 0;
   int currentStep = 0;
 
@@ -43,27 +42,49 @@ class _StepsPageState extends State<StepsPage> {
   void updateStep(int step) {
     setState(() {
       currentStep = step;
+      _updatePages();
     });
   }
 
   void nextStep() {
     setState(() {
-      if (currentStep < 5) {
+      int stepLimit = 0;
+
+      switch (_calculatorIndex) {
+        case 0:
+          switch (_formulaIndex) {
+            case 0:
+              stepLimit = 5;
+            case 1:
+              stepLimit = 3;
+            case 2:
+              stepLimit = 3;
+          }
+        case 1:
+          switch (_formulaIndex) {
+            case 0:
+              stepLimit = 5;
+            case 1:
+              stepLimit = 3;
+            case 2:
+              stepLimit = 3;
+          }
+      }
+
+      if (currentStep < stepLimit) {
         currentStep++;
-        rebuildCalcEx1();
+        _updatePages();
       }
     });
-    print(currentStep);
   }
 
   void previousStep() {
     setState(() {
       if (currentStep > 0) {
         currentStep--;
-        rebuildCalcEx1();
+        _updatePages();
       }
     });
-    print(currentStep);
   }
 
   @override
@@ -72,42 +93,56 @@ class _StepsPageState extends State<StepsPage> {
     _pageIndex = widget.initialPageIndex;
     _formulaIndex = widget.initialFormulaIndex;
     _calculatorIndex = widget.initialCalculatorIndex;
-    print(_pageIndex);
+    _updatePages();
   }
 
-  late List<Widget> _pages = [
-    // Ex Factorize
-    CalcEx1(
-      onUpdateImageIndex: updateStep,
-      currentStep: currentStep,
-      rebuildCallBack: rebuildCalcEx1,
-    ),
+  late List<Widget> _pages;
 
-    // Ex Root
-    CalcEx2(
-      onUpdateImageIndex: updateStep,
-    ),
+  void _updatePages() {
+    _pages = [
+      // Ex Factorize
+      CalcEx1(
+        key: UniqueKey(),
+        onUpdateImageIndex: updateStep,
+        currentStep: currentStep,
+      ),
 
-    // Ex Exponent
-    CalcEx3(
-      onUpdateImageIndex: updateStep,
-    ),
+      // Ex Root
+      CalcEx2(
+        key: UniqueKey(),
+        onUpdateImageIndex: updateStep,
+        currentStep: currentStep,
+      ),
 
-    // MS Factorize
-    CalcMs1(
-      onUpdateImageIndex: updateStep,
-    ),
+      // Ex Exponent
+      CalcEx3(
+        key: UniqueKey(),
+        onUpdateImageIndex: updateStep,
+        currentStep: currentStep,
+      ),
 
-    // MS Root
-    CalcMs2(
-      onUpdateImageIndex: updateStep,
-    ),
+      // MS Factorize
+      CalcMs1(
+        key: UniqueKey(),
+        onUpdateImageIndex: updateStep,
+        currentStep: currentStep,
+      ),
 
-    // MS Exponent
-    CalcMs3(
-      onUpdateImageIndex: updateStep,
-    ),
-  ];
+      // MS Root
+      CalcMs2(
+        key: UniqueKey(),
+        onUpdateImageIndex: updateStep,
+        currentStep: currentStep,
+      ),
+
+      // MS Exponent
+      CalcMs3(
+        key: UniqueKey(),
+        onUpdateImageIndex: updateStep,
+        currentStep: currentStep,
+      ),
+    ];
+  }
 
   List<String> instructionsListEx = [
     //factorize
@@ -238,7 +273,7 @@ class _StepsPageState extends State<StepsPage> {
             onCalculatorIndexChanged: (int index) {
               setState(
                 () {
-                  _imageIndex = 0;
+                  currentStep = 0;
                   _calculatorIndex = index;
                   _formulaIndex = _formulaIndex;
 
@@ -262,12 +297,13 @@ class _StepsPageState extends State<StepsPage> {
                           _pageIndex = 5;
                       }
                   }
+                  _updatePages();
                 },
               );
             },
             onFormulaIndexChanged: (int index) {
               setState(() {
-                _imageIndex = 0;
+                currentStep = 0;
                 _formulaIndex = index;
 
                 switch (_calculatorIndex) {
@@ -290,6 +326,7 @@ class _StepsPageState extends State<StepsPage> {
                         _pageIndex = 5;
                     }
                 }
+                _updatePages();
               });
             },
           ),

@@ -6,32 +6,33 @@ import 'package:flutter/material.dart';
 class CalcEx2 extends StatefulWidget {
   final Function(int) onUpdateImageIndex;
 
-  CalcEx2({Key? key, required this.onUpdateImageIndex}) : super(key: key);
+  final int currentStep;
+
+  CalcEx2({
+    super.key,
+    required this.onUpdateImageIndex,
+    required this.currentStep,
+  });
 
   @override
   State<CalcEx2> createState() => _CalcEx2State();
 }
 
 class _CalcEx2State extends State<CalcEx2> {
-  var clickedList = [true, false, false, false, false, false];
+  int currentStep = 0;
 
   void onClick(int i) {
-    // Reset clickedList
-    for (int j = 0; j < clickedList.length; j++) {
-      clickedList[j] = false;
-    }
+    setState(() {
+      currentStep = i;
+    });
 
-    // Set the clicked button to true
-    clickedList[i] = true;
-
-    // update imageIndex
     widget.onUpdateImageIndex(i);
+  }
 
-    // Print out the contents of the besideList for debugging
-    /* for (int j = 0; j < besideList.length; j++) {
-      print("$i$j" + ", " + besideList[j].toString());
-    }
-    print("=============="); */
+  @override
+  void initState() {
+    super.initState();
+    currentStep = widget.currentStep;
   }
 
   @override
@@ -44,7 +45,7 @@ class _CalcEx2State extends State<CalcEx2> {
           onPressed: () => setState(() {
             onClick(0);
           }),
-          isClicked: clickedList[0],
+          isClicked: currentStep == 0,
           isFirstLast: 1,
         ),
 
@@ -54,7 +55,7 @@ class _CalcEx2State extends State<CalcEx2> {
           onPressed: () => setState(() {
             onClick(1);
           }),
-          isClicked: clickedList[1],
+          isClicked: currentStep == 1,
           isFirstLast: 0,
         ),
 
@@ -64,7 +65,7 @@ class _CalcEx2State extends State<CalcEx2> {
           onPressed: () => setState(() {
             onClick(2);
           }),
-          isClicked: clickedList[2],
+          isClicked: currentStep == 2,
           isFirstLast: 0,
         ),
 
@@ -74,7 +75,7 @@ class _CalcEx2State extends State<CalcEx2> {
           onPressed: () => setState(() {
             onClick(3);
           }),
-          isClicked: clickedList[3],
+          isClicked: currentStep == 3,
           isFirstLast: 2,
         ),
       ],

@@ -5,33 +5,33 @@ import 'package:flutter/material.dart';
 
 class CalcMs1 extends StatefulWidget {
   final Function(int) onUpdateImageIndex;
+  final int currentStep;
 
-  CalcMs1({Key? key, required this.onUpdateImageIndex}) : super(key: key);
+  CalcMs1({
+    super.key,
+    required this.onUpdateImageIndex,
+    required this.currentStep,
+  });
 
   @override
   State<CalcMs1> createState() => _CalcMs1State();
 }
 
 class _CalcMs1State extends State<CalcMs1> {
-  var clickedList = [true, false, false, false, false, false, false];
+  int currentStep = 0;
 
   void onClick(int i) {
-    // Reset clickedList
-    for (int j = 0; j < clickedList.length; j++) {
-      clickedList[j] = false;
-    }
+    setState(() {
+      currentStep = i;
+    });
 
-    // Set the clicked button to true
-    clickedList[i] = true;
-
-    // update imageIndex
     widget.onUpdateImageIndex(i);
+  }
 
-    // Print out the contents of the besideList for debugging
-    /* for (int j = 0; j < besideList.length; j++) {
-      print("$i$j" + ", " + besideList[j].toString());
-    }
-    print("=============="); */
+  @override
+  void initState() {
+    super.initState();
+    currentStep = widget.currentStep;
   }
 
   @override
@@ -44,7 +44,7 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(0);
           }),
-          isClicked: clickedList[0],
+          isClicked: currentStep == 0,
           isFirstLast: 1,
         ),
 
@@ -54,7 +54,7 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(1);
           }),
-          isClicked: clickedList[1],
+          isClicked: currentStep == 1,
           isFirstLast: 0,
         ),
 
@@ -64,7 +64,7 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(2);
           }),
-          isClicked: clickedList[2],
+          isClicked: currentStep == 2,
           isFirstLast: 0,
         ),
 
@@ -74,7 +74,7 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(3);
           }),
-          isClicked: clickedList[3],
+          isClicked: currentStep == 3,
           isFirstLast: 0,
         ),
 
@@ -84,7 +84,7 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(4);
           }),
-          isClicked: clickedList[4],
+          isClicked: currentStep == 4,
           isFirstLast: 0,
         ),
 
@@ -94,7 +94,7 @@ class _CalcMs1State extends State<CalcMs1> {
           onPressed: () => setState(() {
             onClick(5);
           }),
-          isClicked: clickedList[5],
+          isClicked: currentStep == 5,
           isFirstLast: 2,
         ),
       ],

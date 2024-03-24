@@ -5,25 +5,33 @@ import 'package:flutter/material.dart';
 
 class CalcMs2 extends StatefulWidget {
   final Function(int) onUpdateImageIndex;
+  final int currentStep;
 
-  CalcMs2({Key? key, required this.onUpdateImageIndex}) : super(key: key);
+  CalcMs2({
+    super.key,
+    required this.onUpdateImageIndex,
+    required this.currentStep,
+  });
 
   @override
   State<CalcMs2> createState() => _CalcMs2State();
 }
 
 class _CalcMs2State extends State<CalcMs2> {
-  var clickedList = [true, false, false, false, false, false];
+  int currentStep = 0;
 
   void onClick(int i) {
-    // Reset clickedList
-    for (int j = 0; j < clickedList.length; j++) {
-      clickedList[j] = false;
-    }
-
-    clickedList[i] = true;
+    setState(() {
+      currentStep = i;
+    });
 
     widget.onUpdateImageIndex(i);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    currentStep = widget.currentStep;
   }
 
   @override
@@ -35,7 +43,7 @@ class _CalcMs2State extends State<CalcMs2> {
           onPressed: () => setState(() {
             onClick(0);
           }),
-          isClicked: clickedList[0],
+          isClicked: currentStep == 0,
           isFirstLast: 1,
         ),
 
@@ -45,7 +53,7 @@ class _CalcMs2State extends State<CalcMs2> {
           onPressed: () => setState(() {
             onClick(1);
           }),
-          isClicked: clickedList[1],
+          isClicked: currentStep == 1,
           isFirstLast: 0,
         ),
 
@@ -55,7 +63,7 @@ class _CalcMs2State extends State<CalcMs2> {
           onPressed: () => setState(() {
             onClick(2);
           }),
-          isClicked: clickedList[2],
+          isClicked: currentStep == 2,
           isFirstLast: 0,
         ),
 
@@ -65,7 +73,7 @@ class _CalcMs2State extends State<CalcMs2> {
           onPressed: () => setState(() {
             onClick(3);
           }),
-          isClicked: clickedList[3],
+          isClicked: currentStep == 3,
           isFirstLast: 2,
         ),
       ],

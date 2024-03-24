@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 
 class CalcEx1 extends StatefulWidget {
   final Function(int) onUpdateImageIndex;
-  final VoidCallback rebuildCallBack;
 
   final int currentStep;
 
   CalcEx1({
+    super.key,
     required this.onUpdateImageIndex,
     required this.currentStep,
-    required this.rebuildCallBack,
   });
 
   @override
@@ -21,8 +20,6 @@ class CalcEx1 extends StatefulWidget {
 
 class _CalcEx1State extends State<CalcEx1> {
   int currentStep = 0;
-
-  var clickedList = [true, false, false, false, false, false];
 
   void onClick(int i) {
     setState(() {
@@ -36,7 +33,6 @@ class _CalcEx1State extends State<CalcEx1> {
   void initState() {
     super.initState();
     currentStep = widget.currentStep;
-    print(currentStep);
   }
 
   @override
