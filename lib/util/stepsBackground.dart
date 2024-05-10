@@ -40,22 +40,8 @@ class StepsBackground extends StatelessWidget {
           ),
           Row(
             children: [
-              Expanded(
-                child: MaterialButton(
-                  onPressed: onPreviousPressed,
-                  color: Colors.transparent,
-                  elevation: 0,
-                  height: double.infinity,
-                ),
-              ),
-              Expanded(
-                child: MaterialButton(
-                  onPressed: onNextPressed,
-                  color: Colors.transparent,
-                  elevation: 0,
-                  height: double.infinity,
-                ),
-              ),
+              Expanded(child: GestureDetector(onTap: onPreviousPressed)),
+              Expanded(child: GestureDetector(onTap: onNextPressed)),
             ],
           )
         ],

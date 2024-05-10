@@ -1,12 +1,8 @@
 import 'package:calc_steps_mobile/pages/About.dart';
-import 'package:calc_steps_mobile/pages/settings.dart';
 import 'package:calc_steps_mobile/util/dropdownHomepage.dart';
 import 'package:calc_steps_mobile/util/goButton.dart';
 import 'package:calc_steps_mobile/util/tutorialButton.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -97,15 +93,15 @@ class _HomePageState extends State<HomePage> {
       child: ListView(
         padding: EdgeInsets.only(top: 25, left: 25),
         children: <Widget>[
-          ListTile(
+          /* ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.of(context).push(
+              Navigator.of(context).push(flutt
                   MaterialPageRoute(builder: (context) => const Settings()));
             },
-          ),
+          ), */
           ListTile(
             leading: const Icon(Icons.medical_information),
             title: const Text('About'),

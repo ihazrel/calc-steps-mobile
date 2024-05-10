@@ -339,7 +339,7 @@ class _StepsPageState extends State<StepsPage> {
           const Divider(
             color: Colors.black45,
           ),
-          ListTile(
+          /* ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
@@ -348,7 +348,7 @@ class _StepsPageState extends State<StepsPage> {
                 MaterialPageRoute(builder: (context) => const Settings()),
               );
             },
-          ),
+          ), */
           ListTile(
             leading: const Icon(Icons.medical_information),
             title: const Text('About'),
