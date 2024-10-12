@@ -21,20 +21,27 @@ class StepsButton extends StatelessWidget {
     //clicked color
 
     Color buttonColor = Colors.black;
-    if (isClicked)
+    if (!isClicked)
       buttonColor = Color(0xFFD1A7A0);
-    else if (!isClicked) {
+    else if (isClicked) {
       buttonColor = Color(0xFFE8E8E8);
     }
 
     // curved border first last
     BorderRadius round;
-    if (isFirstLast == 1)
-      round = BorderRadius.only(topLeft: Radius.circular(32));
-    else if (isFirstLast == 2)
-      round = BorderRadius.only(topRight: Radius.circular(32));
-    else
-      round = BorderRadius.zero;
+    round = BorderRadius.circular(32);
+    // if (isFirstLast == 1)
+    //   round = BorderRadius.only(
+    //     topLeft: Radius.circular(32),
+    //     bottomLeft: Radius.circular(32),
+    //   );
+    // else if (isFirstLast == 2)
+    //   round = BorderRadius.only(
+    //     topRight: Radius.circular(32),
+    //     bottomRight: Radius.circular(32),
+    //   );
+    // else
+    //   round = BorderRadius.zero;
 
     return Expanded(
       child: MaterialButton(

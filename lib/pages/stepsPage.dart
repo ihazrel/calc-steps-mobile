@@ -5,10 +5,11 @@ import 'package:calc_steps_mobile/pages/calcEx3.dart';
 import 'package:calc_steps_mobile/pages/calcMs1.dart';
 import 'package:calc_steps_mobile/pages/calcMs2.dart';
 import 'package:calc_steps_mobile/pages/calcMs3.dart';
-import 'package:calc_steps_mobile/pages/settings.dart';
+import 'package:calc_steps_mobile/pages/homepage.dart';
 import 'package:calc_steps_mobile/util/dropdownHomepage.dart';
 import 'package:calc_steps_mobile/util/stepsBackground.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StepsPage extends StatefulWidget {
   final int initialCalculatorIndex;
@@ -168,7 +169,7 @@ class _StepsPageState extends State<StepsPage> {
     //factorize
     'Press MODE button 3 times',
     "Press '1' for EQN",
-    "Press RIGHT button on navigation pad",
+    "Press RIGHT button to next page",
     "Press the highest power of equation",
     "Enter value for a, b, and c",
     "Press '=' button for 1st and 2nd value",
@@ -186,13 +187,27 @@ class _StepsPageState extends State<StepsPage> {
 
   @override
   Widget build(BuildContext context) {
-    switch (_formulaIndex) {
+    switch (_calculatorIndex) {
       case 0:
-        titleText = "FACTORIZE";
+        titleText = "fx-570EX";
+        switch (_formulaIndex) {
+          case 0:
+            titleText += " Factorize";
+          case 1:
+            titleText += " Roots";
+          case 2:
+            titleText += " Exponent";
+        }
       case 1:
-        titleText = "POWER ROOT";
-      case 2:
-        titleText = "EXPONENT";
+        titleText = "fx-570MS";
+        switch (_formulaIndex) {
+          case 0:
+            titleText += " Factorization";
+          case 1:
+            titleText += " Roots";
+          case 2:
+            titleText += " Exponent";
+        }
     }
     switch (_calculatorIndex) {
       case 0:
@@ -222,60 +237,99 @@ class _StepsPageState extends State<StepsPage> {
         centerTitle: true,
         title: Text(
           titleText,
-          style: TextStyle(fontSize: 32, fontFamily: 'Lato'),
+          style: TextStyle(
+            fontSize: 25,
+            fontFamily: GoogleFonts.heebo().fontFamily,
+          ),
         ),
       ),
       drawer: stepsPageDrawer(),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            SizedBox(height: 40, child: _pages[_pageIndex]),
+      body: Container(
+        color: Color(0xFFD1A7A0), // Set the background color here
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              SizedBox(height: 40, child: _pages[_pageIndex]),
 
-            // text
-            Container(
-              padding: EdgeInsets.only(top: 15, bottom: 15, right: 5, left: 5),
-              alignment: Alignment.center,
-              width: double.infinity,
-              color: Color(0xFFD1A7A0),
-              child: Text(
-                instructionsText,
-                style: TextStyle(
-                    fontFamily: 'Lato',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500),
+              // text
+              Padding(
+                padding: const EdgeInsets.only(top: 15, bottom: 15),
+                child: Center(
+                  child: Text(
+                    instructionsText,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w800),
+                  ),
+                ),
               ),
-            ),
 
-            // picture
-            Expanded(
-              child: StepsBackground(
-                imageIndex: currentStep,
-                calculatorIndex: _calculatorIndex,
-                formulaIndex: _formulaIndex,
-                onNextPressed: nextStep,
-                onPreviousPressed: previousStep,
+              // picture
+              Expanded(
+                child: StepsBackground(
+                  imageIndex: currentStep,
+                  calculatorIndex: _calculatorIndex,
+                  formulaIndex: _formulaIndex,
+                  onNextPressed: nextStep,
+                  onPreviousPressed: previousStep,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Drawer stepsPageDrawer() {
-    return Drawer(
-      backgroundColor: Color(0xFFECDEDE),
-      child: ListView(
-        padding: EdgeInsets.only(top: 25, left: 25, right: 25),
-        children: <Widget>[
-          DropdownHomepage(
-            onCalculatorIndexChanged: (int index) {
-              setState(
-                () {
+  GestureDetector stepsPageDrawer() {
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Drawer(
+        backgroundColor: Color(0xFFECDEDE),
+        child: ListView(
+          padding: EdgeInsets.only(top: 25, left: 25, right: 25),
+          children: <Widget>[
+            DropdownHomepage(
+              onCalculatorIndexChanged: (int index) {
+                setState(
+                  () {
+                    currentStep = 0;
+                    _calculatorIndex = index;
+                    _formulaIndex = _formulaIndex;
+
+                    switch (_calculatorIndex) {
+                      case 0:
+                        switch (_formulaIndex) {
+                          case 0:
+                            _pageIndex = 0;
+                          case 1:
+                            _pageIndex = 1;
+                          case 2:
+                            _pageIndex = 2;
+                        }
+                      case 1:
+                        switch (_formulaIndex) {
+                          case 0:
+                            _pageIndex = 3;
+                          case 1:
+                            _pageIndex = 4;
+                          case 2:
+                            _pageIndex = 5;
+                        }
+                    }
+                    _updatePages();
+                  },
+                );
+              },
+              onFormulaIndexChanged: (int index) {
+                setState(() {
                   currentStep = 0;
-                  _calculatorIndex = index;
-                  _formulaIndex = _formulaIndex;
+                  _formulaIndex = index;
 
                   switch (_calculatorIndex) {
                     case 0:
@@ -298,48 +352,19 @@ class _StepsPageState extends State<StepsPage> {
                       }
                   }
                   _updatePages();
-                },
-              );
-            },
-            onFormulaIndexChanged: (int index) {
-              setState(() {
-                currentStep = 0;
-                _formulaIndex = index;
+                });
+              },
+            ),
 
-                switch (_calculatorIndex) {
-                  case 0:
-                    switch (_formulaIndex) {
-                      case 0:
-                        _pageIndex = 0;
-                      case 1:
-                        _pageIndex = 1;
-                      case 2:
-                        _pageIndex = 2;
-                    }
-                  case 1:
-                    switch (_formulaIndex) {
-                      case 0:
-                        _pageIndex = 3;
-                      case 1:
-                        _pageIndex = 4;
-                      case 2:
-                        _pageIndex = 5;
-                    }
-                }
-                _updatePages();
-              });
-            },
-          ),
-
-          //
-          /* GoButton(
+            //
+            /* GoButton(
             calculatorIndex: _calculatorIndex,
             formulaIndex: _formulaIndex,
           ), */
-          const Divider(
-            color: Colors.black45,
-          ),
-          /* ListTile(
+            const Divider(
+              color: Colors.black45,
+            ),
+            /* ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
@@ -349,17 +374,28 @@ class _StepsPageState extends State<StepsPage> {
               );
             },
           ), */
-          ListTile(
-            leading: const Icon(Icons.medical_information),
-            title: const Text('About'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const About()),
-              );
-            },
-          ),
-        ],
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.medical_information),
+              title: const Text('About'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const About()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

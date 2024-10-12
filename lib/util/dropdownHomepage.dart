@@ -15,12 +15,12 @@ class DropdownHomepage extends StatefulWidget {
 
 class _DropdownHomepageState extends State<DropdownHomepage> {
   var calculatorDropdownValue = null;
-  final List<String> calculatorDropdownItems = ['FX570EX', 'FX570MS'];
+  final List<String> calculatorDropdownItems = ['fx-570EX', 'fx-570MS'];
 
   var formulaDropdownValue = null;
   final List<String> formulaDropdownItems = [
     'Factorization',
-    'Power Root',
+    'Roots',
     'Exponent'
   ];
 

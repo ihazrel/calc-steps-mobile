@@ -20,7 +20,7 @@ class CalculatorImage extends StatelessWidget {
   }
 
   Widget loadImageAsset() {
-    String imagePath = 'image2/';
+    String imagePath = 'image/';
     imagePath += '${calcList.elementAt(calculatorIndex)}/';
     imagePath += '${formulaList.elementAt(formulaIndex)}/';
     imagePath += '${imageIndex + 1}.png';

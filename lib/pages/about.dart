@@ -11,7 +11,7 @@ class About extends StatelessWidget {
         backgroundColor: Colors.transparent,
       ),
       body: Image.asset(
-        'image2/svg/2.png',
+        'image/svg/2.png',
         width: double.infinity,
         fit: BoxFit.fill,
         gaplessPlayback: true,

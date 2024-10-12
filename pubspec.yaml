@@ -15,12 +15,13 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  google_fonts: ^6.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
@@ -30,13 +31,13 @@ flutter:
 
   assets:
     # Add assets from the images directory to the application.
-    - image2/svg/
-    - image2/ex/factorize/
-    - image2/ex/exponent/
-    - image2/ex/root/
-    - image2/ms/factorize/
-    - image2/ms/exponent/
-    - image2/ms/root/
+    - image/svg/
+    - image/ex/factorize/
+    - image/ex/exponent/
+    - image/ex/root/
+    - image/ms/factorize/
+    - image/ms/exponent/
+    - image/ms/root/
 
 fonts:
   - family: Lato

@@ -3,6 +3,7 @@ import 'package:calc_steps_mobile/util/dropdownHomepage.dart';
 import 'package:calc_steps_mobile/util/goButton.dart';
 import 'package:calc_steps_mobile/util/tutorialButton.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Align(
               alignment: Alignment.topRight,
-              child: Image.asset('image2/svg/1.png')),
+              child: Image.asset('image/svg/1.png')),
           Center(
             child: SizedBox(
               width: 300,
@@ -41,8 +42,11 @@ class _HomePageState extends State<HomePage> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Hi...",
-                        style: TextStyle(fontSize: 82, fontFamily: 'Lato'),
+                        "CalcSteps",
+                        style: TextStyle(
+                          fontSize: 60,
+                          fontFamily: GoogleFonts.oswald().fontFamily,
+                        ),
                       ),
                     ),
                     SizedBox(
