@@ -1,30 +1,61 @@
-# calc_steps_mobile
 
-A new Flutter project.
+# CalcSteps 📱🧮
 
-## Getting Started
+**CalcSteps** is a mobile application developed to help students understand and follow the calculation steps in solving mathematical problems. Inspired by various Casio calculators, this app provides a guided approach to learning how to use scientific calculators effectively.
 
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple).
+> ❗ **Disclaimer**: All calculator interfaces in this app are *inspired by* Casio designs. We are **not affiliated**, **endorsed**, or **sponsored** by Casio in any way. The design is original and serves educational purposes only.
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
 
-## Assets
+## Features ✨
 
-The `assets` directory houses images, fonts, and any other files you want to
-include with your application.
+- Step-by-step guide to solving math problems
+- Simulated calculator interface inspired by real models
+- Multiple calculator types for different exam scenarios
+- Clean and beginner-friendly UI
+- Offline usage support
 
-The `assets/images` directory contains [resolution-aware
-images](https://flutter.dev/docs/development/ui/assets-and-images#resolution-aware).
+---
 
-## Localization
+## Getting Started 🚀
 
-This project generates localized messages based on arb files found in
-the `lib/src/localization` directory.
+To get started with development:
 
-To support additional languages, please visit the tutorial on
-[Internationalizing Flutter
-apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
+### Prerequisites
+- [Flutter SDK](https://flutter.dev/docs/get-started/install)
+- Android Studio or VS Code
+- Dart plugin enabled
+- An Android emulator or device
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/your-username/calc_steps_mobile.git
+cd calc_steps_mobile
+```
+
+2. **Get the dependencies**
+```bash
+flutter pub get
+```
+
+3. **Run the app**
+```bash
+flutter run
+```
+
+---
+
+## About Us 💡
+
+CalcSteps was created by a student from Universiti Teknologi Malaysia, with the goal of helping others visualize and understand the steps taken when using a calculator to solve math problems.
+
+If you have any questions, feedback, or suggestions, feel free to reach out at:  
+📧 **ihazrel@gmail.com**
+
+---
+
+## License 📄
+
+This project is for educational purposes only. All trademarks, service marks, and trade names are property of their respective owners.
