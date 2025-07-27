@@ -55,6 +55,8 @@ class _HomePageState extends State<HomePage> {
 
                     // dropdown menu
                     DropdownHomepage(
+                      selectedCalculatorIndex: _calculatorIndex ?? 0,
+                      selectedFormulaIndex: _formulaIndex ?? 0,
                       onCalculatorIndexChanged: (int index) {
                         setState(() {
                           _calculatorIndex = index;

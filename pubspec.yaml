@@ -35,10 +35,10 @@ flutter:
     # Add assets from the images directory to the application.
     - image/svg/
     - image/ex/factorize/
-    - image/ex/exponent/
+    - image/ex/exponentiation/
     - image/ex/root/
     - image/ms/factorize/
-    - image/ms/exponent/
+    - image/ms/exponentiation/
     - image/ms/root/
 
 fonts:

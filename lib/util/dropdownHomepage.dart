@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:calc_steps_mobile/util/CommonClass.dart';
+import 'package:calc_steps_mobile/util/CommonData.dart';
 
 class DropdownHomepage extends StatefulWidget {
   final void Function(int)? onCalculatorIndexChanged;
-  final void Function(int)? onFormulaIndexChanged; // Define the callback
+  final void Function(int)? onFormulaIndexChanged;
+  final int selectedCalculatorIndex;
+  final int selectedFormulaIndex;
 
-  DropdownHomepage({
+  const DropdownHomepage({
+    super.key,
     required this.onCalculatorIndexChanged,
     required this.onFormulaIndexChanged,
+    required this.selectedCalculatorIndex,
+    required this.selectedFormulaIndex,
   });
 
   @override
@@ -14,25 +21,10 @@ class DropdownHomepage extends StatefulWidget {
 }
 
 class _DropdownHomepageState extends State<DropdownHomepage> {
-  var calculatorDropdownValue = null;
-  final List<String> calculatorDropdownItems = ['fx-570EX', 'fx-570MS'];
-
-  var formulaDropdownValue = null;
-  final List<String> formulaDropdownItems = [
-    'Factorization',
-    'Roots',
-    'Exponent'
-  ];
-
-  int formulaIndex = 0;
-  int calculatorIndex = 0;
-
-  bool isCalculatorDropdownExpanded = false;
-  bool isFormulaDropdownExpanded = false;
-  bool isClicked = false;
+  CalculatorModel? selectedCalculator;
+  Operation? selectedOperation;
 
   double calculateFontSize(double buttonWidth) {
-    // Define your factor to adjust the font size
     const double fontSizeFactor = 12.0;
     return buttonWidth / fontSizeFactor;
   }
@@ -43,9 +35,9 @@ class _DropdownHomepageState extends State<DropdownHomepage> {
       padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
-          // calculator dropdown menu
+          // Calculator dropdown
           LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
+            builder: (context, constraints) {
               double buttonWidth = constraints.maxWidth;
               double fontSize = calculateFontSize(buttonWidth);
 
@@ -55,7 +47,7 @@ class _DropdownHomepageState extends State<DropdownHomepage> {
                   color: Color(0xFFCE96A6),
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: DropdownButton<String>(
+                child: DropdownButton<CalculatorModel>(
                   padding: EdgeInsets.only(left: 50, right: 25),
                   isExpanded: true,
                   hint: Text(
@@ -68,15 +60,15 @@ class _DropdownHomepageState extends State<DropdownHomepage> {
                   ),
                   borderRadius: BorderRadius.circular(32),
                   itemHeight: 60,
-                  value: calculatorDropdownValue,
+                  value: selectedCalculator,
                   underline: Container(),
                   icon: Icon(Icons.keyboard_arrow_down),
                   elevation: 0,
-                  items: calculatorDropdownItems.map((String list) {
-                    return DropdownMenuItem(
-                      value: list,
+                  items: calculatorModels.map((CalculatorModel model) {
+                    return DropdownMenuItem<CalculatorModel>(
+                      value: model,
                       child: Text(
-                        list,
+                        model.name,
                         style: TextStyle(
                           fontSize: fontSize,
                           color: Colors.black,
@@ -84,16 +76,12 @@ class _DropdownHomepageState extends State<DropdownHomepage> {
                       ),
                     );
                   }).toList(),
-                  onChanged: (String? newValue) {
-                    if (newValue != null) {
-                      // Check for null safety
+                  onChanged: (CalculatorModel? newModel) {
+                    if (newModel != null) {
                       setState(() {
-                        calculatorDropdownValue = newValue;
-                        calculatorIndex =
-                            calculatorDropdownItems.indexOf(newValue);
-                        if (widget.onCalculatorIndexChanged != null) {
-                          widget.onCalculatorIndexChanged!(calculatorIndex);
-                        }
+                        selectedCalculator = newModel;
+                        widget.onCalculatorIndexChanged
+                            ?.call(calculatorModels.indexOf(newModel));
                       });
                     }
                   },
@@ -103,9 +91,9 @@ class _DropdownHomepageState extends State<DropdownHomepage> {
           ),
           SizedBox(height: 38),
 
-          // formula dropdown menu
+          // Formula dropdown
           LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
+            builder: (context, constraints) {
               double buttonWidth = constraints.maxWidth;
               double fontSize = calculateFontSize(buttonWidth);
 
@@ -115,43 +103,42 @@ class _DropdownHomepageState extends State<DropdownHomepage> {
                   color: Color(0xFFCE96A6),
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: DropdownButton<String>(
+                child: DropdownButton<Operation>(
                   padding: EdgeInsets.only(left: 50, right: 25),
                   isExpanded: true,
-                  borderRadius: BorderRadius.circular(32),
-                  itemHeight: 60,
-                  hint: const Text(
-                    "Formula",
+                  hint: Text(
+                    'Formula',
                     style: TextStyle(
                       fontSize: 25,
                       color: Color(0xFFE2E2E2),
                     ),
                   ),
-                  value: formulaDropdownValue,
+                  borderRadius: BorderRadius.circular(32),
+                  itemHeight: 60,
+                  value: selectedOperation,
                   underline: Container(),
                   icon: Icon(Icons.keyboard_arrow_down),
-                  items: formulaDropdownItems.map(
-                    (String list) {
-                      return DropdownMenuItem(
-                        value: list,
-                        child: Text(
-                          list,
-                          style: TextStyle(
-                            fontSize: fontSize,
-                            color: Colors.black,
-                          ),
+                  elevation: 0,
+                  items: operations.map((Operation op) {
+                    return DropdownMenuItem<Operation>(
+                      value: op,
+                      child: Text(
+                        op.name,
+                        style: TextStyle(
+                          fontSize: fontSize,
+                          color: Colors.black,
                         ),
-                      );
-                    },
-                  ).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      formulaDropdownValue = newValue!;
-                      formulaIndex = formulaDropdownItems.indexOf(newValue);
-                      if (widget.onFormulaIndexChanged != null) {
-                        widget.onFormulaIndexChanged!(formulaIndex);
-                      }
-                    });
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Operation? newOp) {
+                    if (newOp != null) {
+                      setState(() {
+                        selectedOperation = newOp;
+                        widget.onFormulaIndexChanged
+                            ?.call(operations.indexOf(newOp));
+                      });
+                    }
                   },
                 ),
               );

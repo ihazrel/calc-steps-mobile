@@ -1,34 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:calc_steps_mobile/util/CommonClass.dart';
 
 class CalculatorImage extends StatelessWidget {
-  final int imageIndex;
-  final int formulaIndex;
-  final int calculatorIndex;
+  final TutorialStep step;
 
-  final List<String> calcList = ['ex', 'ms'];
-  final List<String> formulaList = ['factorize', 'root', 'exponent'];
-
-  CalculatorImage({
-    required this.imageIndex,
-    required this.calculatorIndex,
-    required this.formulaIndex,
-  });
+  CalculatorImage({required this.step});
 
   @override
   Widget build(BuildContext context) {
-    return loadImageAsset();
-  }
-
-  Widget loadImageAsset() {
-    String imagePath = 'image/';
-    imagePath += '${calcList.elementAt(calculatorIndex)}/';
-    imagePath += '${formulaList.elementAt(formulaIndex)}/';
-    imagePath += '${imageIndex + 1}.png';
-
     return Image.asset(
-      imagePath,
+      step.stepImage.replaceFirst('../../', ''), // optional: normalize path
       width: double.infinity,
       gaplessPlayback: true,
+      errorBuilder: (context, error, stackTrace) => Center(
+        child: Text('Image not found', style: TextStyle(color: Colors.red)),
+      ),
     );
   }
 }

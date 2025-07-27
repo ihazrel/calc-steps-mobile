@@ -1,6 +1,4 @@
 {
-  "appTitle": "calc_steps_mobile",
-  "@appTitle": {
-    "description": "The title of the application"
-  }
+  "@@locale": "en",
+  "title": "CalcSteps"
 }

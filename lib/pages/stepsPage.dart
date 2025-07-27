@@ -6,6 +6,8 @@ import 'package:calc_steps_mobile/pages/calcMs1.dart';
 import 'package:calc_steps_mobile/pages/calcMs2.dart';
 import 'package:calc_steps_mobile/pages/calcMs3.dart';
 import 'package:calc_steps_mobile/pages/homepage.dart';
+import 'package:calc_steps_mobile/util/CommonData.dart';
+import 'package:calc_steps_mobile/util/CommonClass.dart';
 import 'package:calc_steps_mobile/util/dropdownHomepage.dart';
 import 'package:calc_steps_mobile/util/stepsBackground.dart';
 import 'package:flutter/material.dart';
@@ -44,37 +46,16 @@ class _StepsPageState extends State<StepsPage> {
     setState(() {
       currentStep = step;
       _updatePages();
+      _updateSteps();
     });
   }
 
   void nextStep() {
     setState(() {
-      int stepLimit = 0;
-
-      switch (_calculatorIndex) {
-        case 0:
-          switch (_formulaIndex) {
-            case 0:
-              stepLimit = 5;
-            case 1:
-              stepLimit = 3;
-            case 2:
-              stepLimit = 3;
-          }
-        case 1:
-          switch (_formulaIndex) {
-            case 0:
-              stepLimit = 5;
-            case 1:
-              stepLimit = 3;
-            case 2:
-              stepLimit = 3;
-          }
-      }
-
-      if (currentStep < stepLimit) {
+      if (currentStep < currentSteps.length - 1) {
         currentStep++;
         _updatePages();
+        _updateSteps();
       }
     });
   }
@@ -84,6 +65,7 @@ class _StepsPageState extends State<StepsPage> {
       if (currentStep > 0) {
         currentStep--;
         _updatePages();
+        _updateSteps();
       }
     });
   }
@@ -95,143 +77,67 @@ class _StepsPageState extends State<StepsPage> {
     _formulaIndex = widget.initialFormulaIndex;
     _calculatorIndex = widget.initialCalculatorIndex;
     _updatePages();
+    _updateSteps();
   }
 
   late List<Widget> _pages;
 
   void _updatePages() {
     _pages = [
-      // Ex Factorize
       CalcEx1(
-        key: UniqueKey(),
-        onUpdateImageIndex: updateStep,
-        currentStep: currentStep,
-      ),
-
-      // Ex Root
+          key: UniqueKey(),
+          onUpdateImageIndex: updateStep,
+          currentStep: currentStep),
       CalcEx2(
-        key: UniqueKey(),
-        onUpdateImageIndex: updateStep,
-        currentStep: currentStep,
-      ),
-
-      // Ex Exponent
+          key: UniqueKey(),
+          onUpdateImageIndex: updateStep,
+          currentStep: currentStep),
       CalcEx3(
-        key: UniqueKey(),
-        onUpdateImageIndex: updateStep,
-        currentStep: currentStep,
-      ),
-
-      // MS Factorize
+          key: UniqueKey(),
+          onUpdateImageIndex: updateStep,
+          currentStep: currentStep),
       CalcMs1(
-        key: UniqueKey(),
-        onUpdateImageIndex: updateStep,
-        currentStep: currentStep,
-      ),
-
-      // MS Root
+          key: UniqueKey(),
+          onUpdateImageIndex: updateStep,
+          currentStep: currentStep),
       CalcMs2(
-        key: UniqueKey(),
-        onUpdateImageIndex: updateStep,
-        currentStep: currentStep,
-      ),
-
-      // MS Exponent
+          key: UniqueKey(),
+          onUpdateImageIndex: updateStep,
+          currentStep: currentStep),
       CalcMs3(
-        key: UniqueKey(),
-        onUpdateImageIndex: updateStep,
-        currentStep: currentStep,
-      ),
+          key: UniqueKey(),
+          onUpdateImageIndex: updateStep,
+          currentStep: currentStep),
     ];
+
+    _updateSteps();
   }
 
-  List<String> instructionsListEx = [
-    //factorize
-    'Press SETUP button',
-    "Press '(-)' button for Equation",
-    "Press '2' for polynomial",
-    'Press the highest power of equation',
-    'Enter value for a, b, and c',
-    "Press '=' button for 1st and 2nd value",
-    //root
-    "Enter a number for root value",
-    "Press SHIFT and 'ϰ' button",
-    "Enter the number you desired",
-    "Press '=' button for the value",
-    //power
-    "Enter a number for base ",
-    "Press 'ϰ' button",
-    "Enter the number for power",
-    "Press '=' button for the value",
-  ];
+  void _updateSteps() {
+    currentSteps = tutorialSteps.where((step) {
+      return step.calculatorModelId == _calculatorIndex + 1 &&
+          step.operationId == _formulaIndex + 1;
+    }).toList();
+  }
 
-  List<String> instructionsListMs = [
-    //factorize
-    'Press MODE button 3 times',
-    "Press '1' for EQN",
-    "Press RIGHT button to next page",
-    "Press the highest power of equation",
-    "Enter value for a, b, and c",
-    "Press '=' button for 1st and 2nd value",
-    //root
-    "Enter a number for root value",
-    "Press SHIFT and '∧' button",
-    "Enter the number you desired",
-    "Press '=' button for the value",
-    //power
-    "Enter a number for base ",
-    "Press '∧' button",
-    "Enter the number for power",
-    "Press '=' button for the value",
-  ];
+  late List<TutorialStep> currentSteps;
 
   @override
   Widget build(BuildContext context) {
-    switch (_calculatorIndex) {
-      case 0:
-        titleText = "fx-570EX";
-        switch (_formulaIndex) {
-          case 0:
-            titleText += " Factorize";
-          case 1:
-            titleText += " Roots";
-          case 2:
-            titleText += " Exponent";
-        }
-      case 1:
-        titleText = "fx-570MS";
-        switch (_formulaIndex) {
-          case 0:
-            titleText += " Factorization";
-          case 1:
-            titleText += " Roots";
-          case 2:
-            titleText += " Exponent";
-        }
+    titleText =
+        "${calculatorModels[_calculatorIndex].name} - ${operations[_formulaIndex].name}";
+    instructionsText = currentSteps[currentStep].stepText;
+    // Update the instructions text based on the current step
+    if (currentSteps.isEmpty) {
+      instructionsText = "No steps available for this combination.";
+    } else if (currentStep >= currentSteps.length) {
+      currentStep = currentSteps.length - 1; // Ensure we don't go out of bounds
+      instructionsText = currentSteps[currentStep].stepText;
     }
-    switch (_calculatorIndex) {
-      case 0:
-        switch (_formulaIndex) {
-          case 0:
-            instructionsText = instructionsListEx[currentStep];
-          case 1:
-            instructionsText = instructionsListEx[currentStep + 6];
-          case 2:
-            instructionsText = instructionsListEx[currentStep + 10];
-        }
-      case 1:
-        switch (_formulaIndex) {
-          case 0:
-            instructionsText = instructionsListMs[currentStep];
-          case 1:
-            instructionsText = instructionsListMs[currentStep + 6];
-          case 2:
-            instructionsText = instructionsListMs[currentStep + 10];
-        }
-    }
+
     //
     return Scaffold(
-      backgroundColor: Color(0xFFECDEDE),
+      backgroundColor: const Color(0xFFECDEDE),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -245,7 +151,7 @@ class _StepsPageState extends State<StepsPage> {
       ),
       drawer: stepsPageDrawer(),
       body: Container(
-        color: Color(0xFFD1A7A0), // Set the background color here
+        color: const Color(0xFFD1A7A0), // Set the background color here
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
@@ -253,15 +159,20 @@ class _StepsPageState extends State<StepsPage> {
               SizedBox(height: 40, child: _pages[_pageIndex]),
 
               // text
-              Padding(
-                padding: const EdgeInsets.only(top: 15, bottom: 15),
-                child: Center(
-                  child: Text(
-                    instructionsText,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Lato',
-                        fontWeight: FontWeight.w800),
+              Container(
+                padding: EdgeInsets.all(12),
+                margin: EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  instructionsText,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 29, 29, 29),
                   ),
                 ),
               ),
@@ -274,6 +185,7 @@ class _StepsPageState extends State<StepsPage> {
                   formulaIndex: _formulaIndex,
                   onNextPressed: nextStep,
                   onPreviousPressed: previousStep,
+                  currentSteps: currentSteps,
                 ),
               ),
             ],
@@ -295,85 +207,31 @@ class _StepsPageState extends State<StepsPage> {
           padding: EdgeInsets.only(top: 25, left: 25, right: 25),
           children: <Widget>[
             DropdownHomepage(
+              selectedCalculatorIndex: _calculatorIndex,
+              selectedFormulaIndex: _formulaIndex,
               onCalculatorIndexChanged: (int index) {
-                setState(
-                  () {
-                    currentStep = 0;
-                    _calculatorIndex = index;
-                    _formulaIndex = _formulaIndex;
-
-                    switch (_calculatorIndex) {
-                      case 0:
-                        switch (_formulaIndex) {
-                          case 0:
-                            _pageIndex = 0;
-                          case 1:
-                            _pageIndex = 1;
-                          case 2:
-                            _pageIndex = 2;
-                        }
-                      case 1:
-                        switch (_formulaIndex) {
-                          case 0:
-                            _pageIndex = 3;
-                          case 1:
-                            _pageIndex = 4;
-                          case 2:
-                            _pageIndex = 5;
-                        }
-                    }
-                    _updatePages();
-                  },
-                );
+                setState(() {
+                  _calculatorIndex = index;
+                  currentStep = 0;
+                  _updateSteps();
+                  _updatePages();
+                });
               },
               onFormulaIndexChanged: (int index) {
                 setState(() {
-                  currentStep = 0;
                   _formulaIndex = index;
-
-                  switch (_calculatorIndex) {
-                    case 0:
-                      switch (_formulaIndex) {
-                        case 0:
-                          _pageIndex = 0;
-                        case 1:
-                          _pageIndex = 1;
-                        case 2:
-                          _pageIndex = 2;
-                      }
-                    case 1:
-                      switch (_formulaIndex) {
-                        case 0:
-                          _pageIndex = 3;
-                        case 1:
-                          _pageIndex = 4;
-                        case 2:
-                          _pageIndex = 5;
-                      }
-                  }
+                  currentStep = 0;
+                  _updateSteps();
                   _updatePages();
                 });
               },
             ),
-
-            //
-            /* GoButton(
-            calculatorIndex: _calculatorIndex,
-            formulaIndex: _formulaIndex,
-          ), */
+            SizedBox(
+              height: 10,
+            ),
             const Divider(
               color: Colors.black45,
             ),
-            /* ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const Settings()),
-              );
-            },
-          ), */
             ListTile(
               leading: const Icon(Icons.home),
               title: const Text('Home'),
@@ -383,7 +241,6 @@ class _StepsPageState extends State<StepsPage> {
                     MaterialPageRoute(builder: (context) => const HomePage()));
               },
             ),
-
             ListTile(
               leading: const Icon(Icons.medical_information),
               title: const Text('About'),
