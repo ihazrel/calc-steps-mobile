@@ -49,7 +49,7 @@ flutter run
 
 ## About Us 💡
 
-CalcSteps was created by a student from Universiti Teknologi Malaysia, with the goal of helping others visualize and understand the steps taken when using a calculator to solve math problems.
+CalcSteps was created by a student from Universiti Teknologi Mara, with the goal of helping others visualize and understand the steps taken when using a calculator to solve math problems.
 
 If you have any questions, feedback, or suggestions, feel free to reach out at:  
 📧 **ihazrel@gmail.com**
