@@ -36,9 +36,16 @@ class StepsBackground extends StatelessWidget {
       child: Stack(
         children: [
           // Calculator image display
-          CalculatorImage(
-            step: currentSteps[imageIndex],
-          ),
+          currentSteps.isEmpty
+              ? const Center(
+                  child: Text(
+                    'No image available for this step.',
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  ),
+                )
+              : CalculatorImage(
+                  step: currentSteps[imageIndex],
+                ),
 
           // Left Tap Zone
           Positioned.fill(

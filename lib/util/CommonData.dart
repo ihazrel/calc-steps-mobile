@@ -11,6 +11,11 @@ final List<CalculatorModel> calculatorModels = [
     name: "CS-570M",
     description: "A scientific calculator inspired by the Casio FX-570MS.",
   ),
+  /*CalculatorModel(
+    id: 3,
+    name: "CS-570E",
+    description: "A scientific calculator inspired by the Casio FX-570ES.",
+  ),*/
 ];
 
 final List<Operation> operations = [

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class StepsButton extends StatelessWidget {
   final String text;
   VoidCallback onPressed;
-  final int isFirstLast;
   final bool isClicked;
 
   StepsButton({
@@ -13,7 +12,6 @@ class StepsButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     required this.isClicked,
-    required this.isFirstLast,
   });
 
   @override

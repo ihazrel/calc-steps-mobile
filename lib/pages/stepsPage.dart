@@ -1,10 +1,5 @@
 import 'package:calc_steps_mobile/pages/about.dart';
-import 'package:calc_steps_mobile/pages/calcEx1.dart';
-import 'package:calc_steps_mobile/pages/calcEx2.dart';
-import 'package:calc_steps_mobile/pages/calcEx3.dart';
-import 'package:calc_steps_mobile/pages/calcMs1.dart';
-import 'package:calc_steps_mobile/pages/calcMs2.dart';
-import 'package:calc_steps_mobile/pages/calcMs3.dart';
+import 'package:calc_steps_mobile/pages/StepsButtonListing.dart';
 import 'package:calc_steps_mobile/pages/homepage.dart';
 import 'package:calc_steps_mobile/util/CommonData.dart';
 import 'package:calc_steps_mobile/util/CommonClass.dart';
@@ -45,8 +40,8 @@ class _StepsPageState extends State<StepsPage> {
   void updateStep(int step) {
     setState(() {
       currentStep = step;
-      _updatePages();
       _updateSteps();
+      _updatePages();
     });
   }
 
@@ -54,8 +49,8 @@ class _StepsPageState extends State<StepsPage> {
     setState(() {
       if (currentStep < currentSteps.length - 1) {
         currentStep++;
-        _updatePages();
         _updateSteps();
+        _updatePages();
       }
     });
   }
@@ -64,8 +59,8 @@ class _StepsPageState extends State<StepsPage> {
     setState(() {
       if (currentStep > 0) {
         currentStep--;
-        _updatePages();
         _updateSteps();
+        _updatePages();
       }
     });
   }
@@ -76,41 +71,21 @@ class _StepsPageState extends State<StepsPage> {
     _pageIndex = widget.initialPageIndex;
     _formulaIndex = widget.initialFormulaIndex;
     _calculatorIndex = widget.initialCalculatorIndex;
-    _updatePages();
     _updateSteps();
+    _updatePages();
   }
 
   late List<Widget> _pages;
 
   void _updatePages() {
     _pages = [
-      CalcEx1(
-          key: UniqueKey(),
-          onUpdateImageIndex: updateStep,
-          currentStep: currentStep),
-      CalcEx2(
-          key: UniqueKey(),
-          onUpdateImageIndex: updateStep,
-          currentStep: currentStep),
-      CalcEx3(
-          key: UniqueKey(),
-          onUpdateImageIndex: updateStep,
-          currentStep: currentStep),
-      CalcMs1(
-          key: UniqueKey(),
-          onUpdateImageIndex: updateStep,
-          currentStep: currentStep),
-      CalcMs2(
-          key: UniqueKey(),
-          onUpdateImageIndex: updateStep,
-          currentStep: currentStep),
-      CalcMs3(
-          key: UniqueKey(),
-          onUpdateImageIndex: updateStep,
-          currentStep: currentStep),
+      CalcStepPage(
+        key: UniqueKey(),
+        onUpdateImageIndex: updateStep,
+        currentStep: currentStep,
+        stepsCount: currentSteps.length,
+      ),
     ];
-
-    _updateSteps();
   }
 
   void _updateSteps() {
@@ -126,13 +101,14 @@ class _StepsPageState extends State<StepsPage> {
   Widget build(BuildContext context) {
     titleText =
         "${calculatorModels[_calculatorIndex].name} - ${operations[_formulaIndex].name}";
-    instructionsText = currentSteps[currentStep].stepText;
     // Update the instructions text based on the current step
     if (currentSteps.isEmpty) {
       instructionsText = "No steps available for this combination.";
     } else if (currentStep >= currentSteps.length) {
       currentStep = currentSteps.length - 1; // Ensure we don't go out of bounds
       instructionsText = currentSteps[currentStep].stepText;
+    } else {
+      instructionsText = currentSteps[currentStep].stepText; // ✅ add this else
     }
 
     //
@@ -161,7 +137,7 @@ class _StepsPageState extends State<StepsPage> {
               // text
               Container(
                 padding: EdgeInsets.all(12),
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 20, bottom: 10),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(12),
@@ -247,7 +223,7 @@ class _StepsPageState extends State<StepsPage> {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const About()),
+                  MaterialPageRoute(builder: (context) => const AboutPage()),
                 );
               },
             ),
